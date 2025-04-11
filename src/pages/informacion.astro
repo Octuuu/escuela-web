@@ -1,75 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PasosSection from "../components/PasosSection.astro";
+import AcreditacionSection from "../components/AcreditacionSection.astro";
+import InscripcionSection from "../components/InscripcionSection.astro";
+import AOS from 'aos';
 import 'aos/dist/aos.css';
 ---
+
 <Layout>
-  <section class="min-h-[calc(70vh)] flex flex-col lg:flex-row items-center gap-20 px-6 py-12" data-aos="fade-up">
-    <h1 class="text-4xl sm:text-6xl lg:text-8xl font-extrabold mb-4 tracking-tight leading-none text-center lg:text-left" data-aos="fade-in">
-      NUESTROS PASOS
-    </h1>
-    <div class="flex text-center flex-col gap-6 items-center lg:items-start" data-aos="fade-up" data-aos-delay="200">
-      <h2 class="text-2xl sm:text-5xl font-extrabold">Reseña Histórica</h2>
-      <p class="text-base sm:text-lg font-light text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...
-      </p>
-    </div>
-  </section>
-
-  <!-- Sección: Acreditación y Equipamiento -->
-  <section class="min-h-[calc(100vh)] flex flex-col lg:flex-row items-center gap-12 px-6 py-12" data-aos="fade-left">
-    <div class="flex-1">
-      <h1 class="text-3xl sm:text-5xl font-extrabold mb-4" data-aos="fade-right">ACREDITACIÓN</h1>
-      <p class="text-base sm:text-lg mb-8 font-light" data-aos="fade-up">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...
-      </p>
-      <h1 class="text-3xl sm:text-5xl font-extrabold mb-4" data-aos="fade-left">EQUIPAMIENTO</h1>
-      <p class="text-base sm:text-lg font-light" data-aos="fade-up">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...
-      </p>
-    </div>
-    <div class="flex-1 flex flex-col items-center" data-aos="fade-right">
-      <h1 class="text-4xl sm:text-8xl font-extrabold mb-4 text-center">NUESTROS</h1>
-      <div class="flex flex-col sm:flex-row items-center gap-4" data-aos="zoom-in">
-        <img class="w-24 sm:w-32" src="/src/assets/copa.png" alt="Copa" />
-        <div class="text-center sm:text-left">
-          <h2 class="text-3xl sm:text-7xl font-extrabold">GRANDES</h2>
-          <h2 class="text-3xl sm:text-8xl font-extrabold">LOGROS</h2>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección: Inscripción -->
-  <section class="min-h-[calc(100vh)] flex flex-col lg:flex-row items-center gap-12 px-6 py-12" data-aos="fade-up">
-    <div class="flex-1 flex flex-col items-center lg:items-start">
-      <div class="flex items-center gap-4 mb-4" data-aos="zoom-in">
-        <h1 class="text-3xl sm:text-7xl font-extrabold">¿CÓMO</h1>
-        <img class="h-12 sm:h-16" src="/src/assets/inscripcion.png" alt="Inscripción" />
-      </div>
-      <h1 class="text-3xl sm:text-7xl font-extrabold" data-aos="fade-up">INSCRIBIRSE?</h1>
-    </div>
-    <div class="flex-1" data-aos="fade-left">
-      <h2 class="text-2xl sm:text-6xl font-extrabold mb-4">DOCUMENTOS</h2>
-      <ul class="list-disc list-inside text-base sm:text-lg mb-6" data-aos="fade-up">
-        <li>Documento 1</li>
-        <li>Documento 2</li>
-        <li>Documento 3</li>
-        <li>Documento 4</li>
-        <li>Documento 5</li>
-      </ul>
-      <h1 class="text-6xl font-bold mt-10" data-aos="fade-right">ACERCARLO A</h1>
-      <p class="mt-5 flex items-center flex-col text-2xl" data-aos="zoom-in">(Direccion IFD) 
-        <span class="items-center flex flex-col">Instituto de formación docente      
-          <span>San Ignacio</span>
-        </span>
-      </p>
-    </div>
-  </section>
-
-  <script>
-    import AOS from 'aos';
-    import 'aos/dist/aos.css';
-
-    AOS.init();
-  </script>
+  <PasosSection />
+  <AcreditacionSection />
+  <InscripcionSection />
 </Layout>
+
+<script>
+  import AOS from 'aos';
+  import 'aos/dist/aos.css';
+
+  AOS.init({
+    once: false, 
+  });
+
+  window.addEventListener("scroll", () => {
+    AOS.refresh();
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    AOS.refresh(); 
+  });
+</script>
