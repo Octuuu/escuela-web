@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CursoCard from "../components/CursoCard.astro";
+---
+
+<Layout>
+  <div class="text-black px-4">
+    <h1 class="text-4xl font-extrabold mb-5 text-white text-center">OFERTAS EDUCATIVAS</h1>
+
+    <!-- primera fila  -->
+    <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3 sm:gap-1">
+      <CursoCard 
+        title="Profesorado en Educación Básica"
+        image="/src/assets/carrera.jpg"
+        alt="Educación Básica"
+      />
+      <CursoCard 
+        title="Profesorado en Educación Inicial"
+        image="/src/assets/carrera.jpg"
+        alt="Educación Inicial"
+      />
+      <CursoCard 
+        title="Habilitación Pedagógica"
+        image="/src/assets/carrera.jpg"
+        alt="Habilitación Pedagógica"
+      />
+    </div>
+
+    <!-- segunda fila -->
+    <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
+      <CursoCard 
+        title="Formación Específica en Lengua y Literatura Castellana"
+        image="/src/assets/carrera.jpg"
+        alt="Lengua y Literatura"
+      />
+      <CursoCard 
+        title="Profesorado para 3° Ciclo Matemática"
+        image="/src/assets/carrera.jpg"
+        alt="Profesorado Matemática"
+      />
+    </div>
+  </div>
+</Layout>

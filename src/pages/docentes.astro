@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DocenteCard from "../components/DocenteCard.astro";
+---
+
+<Layout>
+  <section class="min-h-[calc(70vh)] flex flex-col lg:flex-row items-center justify-center gap-10 py-">
+    
+    <h1 class="xl:text-8xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-none 
+               text-center lg:text-left lg:self-center lg:sticky lg:top-10 lg:w-auto">
+      PLANTEL DOCENTE
+    </h1>
+
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 w-full">
+      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
+      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito"  />
+      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
+      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
+      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
+      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
+    </div>
+  </section>
+</Layout>

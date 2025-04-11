@@ -1,0 +1,22 @@
+---
+const { name, subject, image, alt, perfil } = Astro.props;
+---
+
+<div class="bg-white shadow rounded-xl overflow-hidden w-full max-w-sm mx-auto p-3">
+  
+  <div class="relative overflow-hidden ">
+    <img
+      src={image}
+      alt={alt}
+      class="w-full h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-115"
+    />
+    <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white/95 to-transparent"></div>
+  </div>
+
+  <div class="p-4 text-center relative z-10">
+    <h2 class="text-gray-600 mb-4">{name}</h2>
+    <!-- <p class="text-sm">{subject}</p> -->
+    <a href={perfil}
+     class=" text-blue-600 font-semibold border py-2 px-5 rounded-xl hover:bg-blue-100">Ver Perfil</a>
+  </div>
+</div>
