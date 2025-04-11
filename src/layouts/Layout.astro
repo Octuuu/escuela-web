@@ -124,16 +124,7 @@ import logo from '../assets/logoifd.png';
       <slot />
     </main>
 
-    <script type="module">
-      import { initMenu } from '/src/scripts/menu.js';
-    
-      document.addEventListener('astro:after-swap', () => {
-        initMenu();
-      });
-    
-      initMenu();
-    </script>
-    
+    <script type="module" src="/scripts/menu.js"></script>    
     
   </body>
 </html>

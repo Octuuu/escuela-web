@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from 'astro:assets';
+import logo from '../assets/logoifd.png';
 ---
 
 <Layout>
@@ -13,7 +14,7 @@ import { Image } from 'astro:assets';
             width={400}      
             height={192} 
             class="w-32 sm:w-40 md:w-48 lg:w-36" 
-            src="/src/assets/logoifd.png" 
+            src={logo} 
             alt="Logo IFD" 
             loading="eager" 
           />
