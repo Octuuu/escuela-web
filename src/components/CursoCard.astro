@@ -1,9 +1,11 @@
 ---
 const { title, image, alt } = Astro.props;
+import { Image } from 'astro:assets';
 ---
 
 <div class="bg-white shadow rounded-xl overflow-hidden w-full max-w-xs mx-auto">
-  <img src={image} alt={alt} class="w-full h-50 object-cover  transition-transform duration-300 ease-in-out hover:scale-105" />
+  <Image src={image} width={400}      
+  height={192} alt={alt} class="w-full h-50 object-cover  transition-transform duration-300 ease-in-out hover:scale-105" />
   <div class="text-center p-5">
     <h2 class="text-gray-600 text-xl tracking-tight leading-none ">{title}</h2>
   </div>

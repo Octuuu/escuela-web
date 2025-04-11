@@ -1,6 +1,8 @@
 ---
+// src/pages/docentes.astro
 import Layout from "../layouts/Layout.astro";
 import DocenteCard from "../components/DocenteCard.astro";
+import { docentes } from "../data/docentes.js";
 ---
 
 <Layout>
@@ -11,14 +13,16 @@ import DocenteCard from "../components/DocenteCard.astro";
       PLANTEL DOCENTE
     </h1>
 
-    
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 w-full">
-      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
-      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito"  />
-      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
-      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
-      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
-      <DocenteCard name="Lic. Fulanito" subject="..." image="/src/assets/profe.png" alt="..." perfil="/docentes/fulanito" />
+      {docentes.map((docente) => (
+        <DocenteCard
+          name={docente.name}
+          subject={docente.subject}
+          image={docente.image}
+          alt={docente.alt}
+          perfil={`/docentes/${docente.slug}`}
+        />
+      ))}
     </div>
   </section>
 </Layout>

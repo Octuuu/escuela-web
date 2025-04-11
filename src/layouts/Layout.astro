@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import { ViewTransitions } from 'astro:transitions';
+import { Image } from 'astro:assets';
+import logo from '../assets/logoifd.png';
 ---
 
 <html lang="es">
@@ -19,7 +21,9 @@ import { ViewTransitions } from 'astro:transitions';
         <!-- Logo -->
         <div>
           <a href="/">
-            <img class="w-12" src="/src/assets/logoifd.png" alt="Logo Instituto Formación Docente" />
+            <Image class="w-12" src={logo} width={400}      
+            height={192} alt="Logo Instituto Formación Docente" loading="eager"
+            />
           </a>
         </div>
 
@@ -28,7 +32,7 @@ import { ViewTransitions } from 'astro:transitions';
           <li>
             <a
               href="/"
-              class="relative transition-all duration-300 ease-in-out hover:text-blue-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              class="relative transition-all duration-300 ease-in-out  after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-gray-200 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               Inicio
             </a>
@@ -36,7 +40,7 @@ import { ViewTransitions } from 'astro:transitions';
           <li>
             <a
               href="/carreras"
-              class="relative transition-all duration-300 ease-in-out hover:text-blue-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              class="relative transition-all duration-300 ease-in-out after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-gray-200 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               Carreras
             </a>
@@ -44,7 +48,7 @@ import { ViewTransitions } from 'astro:transitions';
           <li>
             <a
               href="/informacion"
-              class="relative transition-all duration-300 ease-in-out hover:text-blue-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              class="relative transition-all duration-300 ease-in-out  after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-gray-200 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               Información
             </a>
@@ -52,7 +56,7 @@ import { ViewTransitions } from 'astro:transitions';
           <li>
             <a
               href="/docentes"
-              class="relative transition-all duration-300 ease-in-out hover:text-blue-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              class="relative transition-all duration-300 ease-in-out  after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-gray-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               Docentes
             </a>
@@ -121,13 +125,16 @@ import { ViewTransitions } from 'astro:transitions';
       <slot />
     </main>
 
-    <script>
-      const menuToggle = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-
-      menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+    <script type="module">
+      import { initMenu } from '/src/scripts/menu.js';
+    
+      document.addEventListener('astro:after-swap', () => {
+        initMenu();
       });
+    
+      initMenu();
     </script>
+    
+    
   </body>
 </html>
