@@ -2,7 +2,7 @@ export const docentes = [
   {
     name: "Lic. Fulanito",
     subject: "Matemáticas",
-    image: "/src/assets/profe.webp",
+    image: "/assets/profe.webp",
     alt: "Foto de Lic. Fulanito",
     descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...",
     slug: "fulanito",
@@ -10,7 +10,7 @@ export const docentes = [
   {
     name: "Lic. Juan Pérez",
     subject: "Lengua y Literatura",
-    image: "/src/assets/profe.webp",
+    image: "/assets/profe.webp",
     alt: "Foto de Lic. Juan Pérez",
     descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...",
     slug: "juan-perez",
@@ -18,7 +18,7 @@ export const docentes = [
   {
     name: "Lic. María González",
     subject: "Ciencias Sociales",
-    image: "/src/assets/profe.webp",
+    image: "/assets/profe.webp",
     alt: "Foto de Lic. María González",
     descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...",
     slug: "maria-gonzalez",
@@ -26,7 +26,7 @@ export const docentes = [
   {
     name: "Lic. Pedro Rodríguez",
     subject: "Física",
-    image: "/src/assets/profe.webp",
+    image: "/assets/profe.webp",
     alt: "Foto de Lic. Pedro Rodríguez",
     descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...",
     slug: "pedro-rodriguez",
@@ -34,7 +34,7 @@ export const docentes = [
   {
     name: "Lic. Laura Torres",
     subject: "Química",
-    image: "/src/assets/profe.webp",
+    image: "/assets/profe.webp",
     alt: "Foto de Lic. Laura Torres",
     descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...",
     slug: "laura-torres",
@@ -42,7 +42,7 @@ export const docentes = [
   {
     name: "Lic. Carlos Martínez",
     subject: "Historia",
-    image: "/src/assets/profe.webp",
+    image: "/assets/profe.webp",
     alt: "Foto de Lic. Carlos Martínez",
     descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac euismod urna. Pellentesque bibendum imperdiet ex eu ultrices...",
     slug: "carlos-martinez",
