@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 ---
 
-<section class="min-h-[100vh] flex flex-col lg:flex-row items-center gap-12 px-4 sm:px-6 py-16 bg-[rgb(1,1,40)] text-white overflow-hidden" data-aos="fade-left">
+<section class= "min-h-[100vh] flex flex-col lg:flex-row items-center gap-12 px-4 sm:px-6 py-16 bg-[rgb(1,1,40)] text-white overflow-hidden" data-aos="fade-left">
 
   <div class="flex-1 w-full max-w-full space-y-12 px-2 sm:px-8 lg:px-12">
     <div>
@@ -28,11 +28,14 @@ import { Image } from 'astro:assets';
     <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 tracking-tight uppercase" data-aos="zoom-in">
       Nuestros
     </h1>
-    <div class="flex flex-col sm:flex-row items-center gap-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl transition duration-300 hover:scale-[1.01]">
-      <Image height={128} width={128} class="w-24 sm:w-32 md:w-36 h-auto object-contain" src="/assets/copa.png" alt="Copa" />
-      <div class="text-center sm:text-left lg:text-right">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#FFB84D]">Grandes</h2>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#FFB84D]">Logros</h2>
+
+    <div class="overflow-hidden w-full">
+      <div class="flex flex-col sm:flex-row items-center gap-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl transition duration-300 hover:scale-[1.01]">
+        <Image height={128} width={128} class="w-24 sm:w-32 md:w-36 h-auto object-contain" src="/assets/copa.png" alt="Copa" />
+        <div class="text-center sm:text-left lg:text-right">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#FFB84D]">Grandes</h2>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#FFB84D]">Logros</h2>
+        </div>
       </div>
     </div>
   </div>
