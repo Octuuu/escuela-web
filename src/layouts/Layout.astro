@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import { ViewTransitions } from 'astro:transitions';
 import { Image } from 'astro:assets';
-import logo from '../assets/logoifd.png';
+import logo from '../assets/logoifd2.webp';
 ---
 
 <html lang="es">
@@ -16,22 +16,20 @@ import logo from '../assets/logoifd.png';
     <ViewTransitions />
   </head>
   <body class="font-sans bg-white text-gray-900">
-    <header class="sticky top-0 z-50 bg-[rgba(1,1,40,0.7)] backdrop-blur-md border-b border-white/10 navbar-animate">
-      <nav class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    <header class="sticky top-0 z-50 bg-[rgba(1,1,40,0.7)] backdrop-blur-md border-b border-white/20 shadow-md navbar-animate">
+      <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     
         <div>
           <a href="/">
-            <Image class="w-12" src={logo} width={400}      
-            height={192} alt="Logo Instituto Formación Docente" loading="eager"
-            />
+            <Image class="w-14" src={logo} width={400} height={192} alt="Logo Instituto Formación Docente" loading="eager" />
           </a>
         </div>
 
-        <ul class="hidden md:flex space-x-6 text-lg text-white">
+        <ul class="gap-6 hidden md:flex text-lg text-white font-semibold">
           <li>
             <a
               href="/"
-              class="relative transition-all duration-300 ease-in-out  after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-gray-200 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              class="relative after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-gray-200 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               Inicio
             </a>
@@ -39,7 +37,7 @@ import logo from '../assets/logoifd.png';
           <li>
             <a
               href="/carreras"
-              class="relative transition-all duration-300 ease-in-out after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-gray-200 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              class="relative after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-gray-200 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               Carreras
             </a>
@@ -47,7 +45,7 @@ import logo from '../assets/logoifd.png';
           <li>
             <a
               href="/informacion"
-              class="relative transition-all duration-300 ease-in-out  after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-gray-200 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              class="relative after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-gray-200 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               Información
             </a>
@@ -55,7 +53,7 @@ import logo from '../assets/logoifd.png';
           <li>
             <a
               href="/docentes"
-              class="relative transition-all duration-300 ease-in-out  after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-gray-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              class="relative after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               Docentes
             </a>
@@ -65,66 +63,37 @@ import logo from '../assets/logoifd.png';
         <!-- Botón de menú hamburguesa para móviles -->
         <div class="md:hidden">
           <button id="menu-toggle" class="text-white focus:outline-none">
-            <!-- Ícono de menú -->
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
       </nav>
 
       <!-- Menú desplegable para móviles -->
-      <div
-        id="mobile-menu"
-        class="md:hidden fixed top-16 left-0 w-full bg-[rgba(1,1,40,0.9)] backdrop-blur-md text-white z-40 hidden"
-      >
-        <ul class="flex flex-col items-center space-y-4 py-4 text-lg">
+      <div id="mobile-menu" class="md:hidden fixed top-16 left-0 w-full bg-[rgba(1,1,40,0.9)] backdrop-blur-md text-white z-40 hidden">
+        <ul class="flex flex-col items-center space-y-4 py-4 text-lg font-semibold">
           <li>
-            <a
-              href="/"
-              class="relative transition-all duration-300 ease-in-out hover:text-blue-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
-            >
-              Inicio
-            </a>
+            <a href="/" class="relative transition-all duration-300 ease-in-out hover:text-gray-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Inicio</a>
           </li>
           <li>
-            <a
-              href="/carreras"
-              class="relative transition-all duration-300 ease-in-out hover:text-blue-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
-            >
-              Carreras
-            </a>
+            <a href="/carreras" class="relative transition-all duration-300 ease-in-out hover:text-gray-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Carreras</a>
           </li>
           <li>
-            <a
-              href="/informacion"
-              class="relative transition-all duration-300 ease-in-out hover:text-blue-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
-            >
-              Información
-            </a>
+            <a href="/informacion" class="relative transition-all duration-300 ease-in-out hover:text-gray-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Información</a>
           </li>
           <li>
-            <a
-              href="/docentes"
-              class="relative transition-all duration-300 ease-in-out hover:text-blue-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
-            >
-              Docentes
-            </a>
+            <a href="/docentes" class="relative transition-all duration-300 ease-in-out hover:text-gray-300 after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-gray-300 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Docentes</a>
           </li>
         </ul>
       </div>
     </header>
 
-    <main class="max-w-7xl mx-auto p-4">
+    <main class="max-w-7xl mx-auto p-6">
       <slot />
     </main>
 
-    <script type="module" src="/scripts/menu.js"></script>    
+    <script type="module" src="/scripts/menu.js"></script>  
     
   </body>
 </html>

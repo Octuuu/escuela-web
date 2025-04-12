@@ -1,15 +1,88 @@
 ---
 import { Image } from 'astro:assets';
 ---
-<section class="min-h-[calc(80vh)] flex flex-col lg:flex-row items-center text-center lg:text-left gap-12 lg:gap-20 px-4 sm:px-6 py-12 overflow-x-hidden" data-aos="fade-up">
-    <h1 class="text-4xl sm:text-6xl lg:text-8xl font-extrabold mb-4 tracking-tight leading-none w-full break-words" data-aos="fade-in">
-      NUESTROS PASOS
+
+<section class="min-h-[100vh] flex flex-col lg:flex-row items-start text-center lg:text-left gap-12 lg:gap-20 px-4 sm:px-6 py-16 bg-[rgb(1,1,40)] text-white overflow-hidden" data-aos="fade-up">
+
+  <!-- Encabezado izquierdo -->
+  <div class="w-full lg:w-1/3 flex flex-col items-center lg:items-start gap-6" data-aos="fade-right">
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-[#FFB84D]">
+      Nuestros<br/>Pasos
     </h1>
-    <div class="flex flex-col gap-6 items-center lg:items-start w-full max-w-4xl" data-aos="fade-up" data-aos-delay="200">
-      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold break-words">Reseña Histórica</h2>
-      <p class="text-base sm:text-lg font-light text-justify break-words">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod purus nec elit fermentum, nec gravida lorem elementum. Proin luctus convallis velit, sit amet sollicitudin lacus vestibulum a.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod purus nec elit fermentum, nec gravida lorem elementum. Proin luctus convallis velit, sit amet sollicitudin lacus vestibulum a.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod purus nec elit fermentum, nec gravida lorem elementum. Proin luctus convallis velit, sit amet sollicitudin lacus vestibulum a.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod purus nec elit fermentum, nec gravida lorem elementum. Proin luctus convallis 
+    <div class="w-24 h-1 bg-[#FFB84D] rounded-full"></div>
+    <p class="text-base sm:text-lg text-gray-300 font-light leading-relaxed">
+      A lo largo de los años hemos construido una historia sólida basada en la excelencia educativa.
+    </p>
+
+    <!-- Elemento decorativo bonito -->
+    <div class="mt-10 w-full flex justify-center lg:justify-start">
+      <div class="bg-gradient-to-tr from-yellow-400/20 via-yellow-200/10 to-white/10 backdrop-blur-lg rounded-2xl p-6 w-64 h-64 shadow-xl border border-yellow-300/10 relative overflow-hidden animate-fade-in">
+        
+        <!-- Ícono de gorro de graduación -->
+        <svg class="absolute right-4 bottom-4 w-20 h-20 text-[#FFB84D]/20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 9.75L5.18 9 12 5.25 18.82 9 12 12.75zm-6 2.68v2.07c0 1.45 2.69 2.5 6 2.5s6-1.05 6-2.5v-2.07l-6 3.27-6-3.27z"/>
+        </svg>
+    
+        <h3 class="text-xl font-semibold text-[#FFB84D] mb-2">¡Siempre creciendo!</h3>
+        <p class="text-sm text-gray-200 leading-relaxed">Nuestro camino está lleno de logros, aprendizajes y compromiso con la comunidad educativa.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido reseña + línea de tiempo -->
+  <div class="w-full lg:w-2/3 flex flex-col gap-12">
+    <!-- Reseña -->
+    <div class="flex flex-col gap-6 items-center lg:items-start max-w-4xl" data-aos="fade-up" data-aos-delay="200">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">Reseña Histórica</h2>
+      <p class="text-base sm:text-lg font-light text-gray-300 leading-relaxed text-justify break-words bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-lg">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum eligendi, maiores neque eaque, velit quibusdam aut nemo placeat est omnis expedita sunt id ratione assumenda maxime totam dicta cum esse. <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, ratione temporibus. Amet nihil, explicabo nesciunt numquam illo fuga, esse ratione sapiente temporibus repellendus animi a, omnis mollitia? Magni, odio enim. <br>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, ex. Voluptas veniam officiis architecto illum ipsam quae modi sint, suscipit beatae corporis dolorem voluptatem quos tenetur totam, fuga dolores unde! <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore eaque consequuntur pariatur beatae a tempore libero nam aliquid repudiandae quidem. Odio fuga voluptate, vel distinctio hic consequuntur beatae doloremque vero?
       </p>
     </div>
+
+    <!-- Línea de tiempo -->
+    <div class="relative border-l-4 border-[#FFB84D] pl-6 space-y-12 mt-8" data-aos="fade-up" data-aos-delay="300">
+      <div class="relative">
+        <span class="absolute -left-[1.25rem] top-1 w-4 h-4 bg-[#FFB84D] rounded-full"></span>
+        <h3 class="text-xl font-semibold text-white">1995 - Fundación de la institución</h3>
+        <p class="text-gray-300 text-sm mt-1">Se abren las puertas con el primer grupo de estudiantes y un equipo docente comprometido.</p>
+      </div>
+
+      <div class="relative">
+        <span class="absolute -left-[1.25rem] top-1 w-4 h-4 bg-[#FFB84D] rounded-full"></span>
+        <h3 class="text-xl font-semibold text-white">2005 - Ampliación de infraestructura</h3>
+        <p class="text-gray-300 text-sm mt-1">Se construyen nuevas aulas, laboratorios y espacios recreativos para mejorar la experiencia estudiantil.</p>
+      </div>
+
+      <div class="relative">
+        <span class="absolute -left-[1.25rem] top-1 w-4 h-4 bg-[#FFB84D] rounded-full"></span>
+        <h3 class="text-xl font-semibold text-white">2015 - Incorporación de tecnología</h3>
+        <p class="text-gray-300 text-sm mt-1">Se integran herramientas digitales y plataformas educativas para innovar en la enseñanza.</p>
+      </div>
+
+      <div class="relative">
+        <span class="absolute -left-[1.25rem] top-1 w-4 h-4 bg-[#FFB84D] rounded-full"></span>
+        <h3 class="text-xl font-semibold text-white">2023 - Reconocimiento nacional</h3>
+        <p class="text-gray-300 text-sm mt-1">La institución recibe un premio por su excelencia educativa y compromiso con la comunidad.</p>
+      </div>
+    </div>
+  </div>
 </section>
-  
+
+<style>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-out both;
+}
+</style>

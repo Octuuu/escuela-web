@@ -1,14 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from 'astro:assets';
-import logo from '../assets/logoifd.png';
+import logo from '../assets/logoifd2.webp';
 ---
 
 <Layout>
-  <div class="min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center px-4 text-center hero-animate">
-    <div class="flex flex-col lg:flex-row items-center gap-6">
+  <section class="min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center px-4 text-center w-full bg-[rgb(1,1,40)] text-white relative overflow-hidden hero-animate">
+
+    <!-- Glow decorativo a la izquierda -->
+
+    <!-- Contenido principal -->
+    <div class="relative z-10 flex flex-col lg:flex-row items-center gap-10">
       <div class="flex flex-col items-center lg:items-start">
-        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-extrabold">FORMACIÓN</h1>
+        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-extrabold text-[#FFB84D]">
+          FORMACIÓN
+        </h1>
         <div class="flex flex-col sm:flex-row items-center gap-4">
           <Image 
             width={400}      
@@ -18,15 +24,19 @@ import logo from '../assets/logoifd.png';
             alt="Logo IFD" 
             loading="eager" 
           />
-          <h1 class="text-5xl sm:text-7xl md:text-7xl lg:text-9xl font-extrabold">DOCENTE</h1>
+          <h1 class="text-5xl sm:text-7xl md:text-7xl lg:text-9xl font-extrabold text-[#FFB84D]">
+            DOCENTE
+          </h1>
         </div>
       </div>
     </div>
 
+    <!-- Frase -->
     <p class="mt-20 text-lg sm:text-xl md:text-xl font-roboto-slab italic font-semibold">
       "El objetivo de la educación es crear personas capaces de hacer cosas nuevas, <br class="hidden sm:block" />
       no solamente repetir lo que otras generaciones hacen"
     </p>
-  </div>
+  </section>
 </Layout>
+
 

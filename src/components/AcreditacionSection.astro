@@ -2,28 +2,40 @@
 import { Image } from 'astro:assets';
 ---
 
-<section class="min-h-[calc(100vh)] flex flex-col lg:flex-row items-center gap-12 px-4 sm:px-6 py-12 overflow-x-hidden" data-aos="fade-left">
-    <div class="flex-1 w-full max-w-full">
-      <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 break-words" data-aos="fade-right">ACREDITACIÓN</h1>
-      <p class="text-base sm:text-lg mb-8 font-light text-justify" data-aos="fade-up">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod purus nec elit fermentum, nec gravida lorem elementum. Proin luctus convallis velit, sit amet sollicitudin lacus vestibulum a.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod purus nec elit fermentum, nec gravida lorem elementum. Proin luctus convallis velit, sit amet sollicitudin lacus vestibulum a.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod purus nec elit fermentum, nec gravida lorem elementum. Proin luctus convallis velit, sit amet sollicitudin lacus vestibulum a.
-      </p>
-  
-      <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 break-words" data-aos="fade-left">EQUIPAMIENTO</h1>
-      <p class="text-base sm:text-lg font-light text-justify" data-aos="fade-up">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod purus nec elit fermentum, nec gravida lorem elementum. Proin luctus convallis velit, sit amet sollicitudin lacus vestibulum a.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod purus nec elit fermentum, nec gravida lorem elementum. Proin luctus convallis velit, sit amet sollicitudin lacus vestibulum a
+<section class="min-h-[100vh] flex flex-col lg:flex-row items-center gap-12 px-4 sm:px-6 py-16 bg-[rgb(1,1,40)] text-white overflow-hidden" data-aos="fade-left">
+
+  <!-- Columna de texto -->
+  <div class="flex-1 w-full max-w-full space-y-12 px-2 sm:px-8 lg:px-12">
+    <div>
+      <h1 class="text-3xl sm:text-5xl font-bold text-[#FFB84D] mb-4" data-aos="fade-right">
+        Acreditación
+      </h1>
+      <p class="text-base sm:text-lg text-gray-300 font-light leading-relaxed text-justify" data-aos="fade-up">
+        Nuestra institución cuenta con la debida acreditación por parte del Ministerio de Educación, asegurando estándares de calidad en la formación docente. Ofrecemos un entorno académico serio, orientado al desarrollo integral de los futuros profesionales.
       </p>
     </div>
-  
-    <div class="flex-1 flex flex-col items-center lg:items-end text-center lg:text-right max-w-full overflow-hidden" data-aos="fade-right">
-      <h1 class="text-4xl sm:text-6xl lg:text-8xl font-extrabold mb-4 break-words">NUESTROS</h1>
-      <div class="flex flex-col sm:flex-row items-center gap-4" data-aos="zoom-in">
-        <Image height={10} width={10} class="w-20 sm:w-28 md:w-32 max-w-full h-auto" src="/assets/copa.png" alt="Copa" />
-        <div class="text-center sm:text-left lg:text-right break-words">
-          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold">GRANDES</h2>
-          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold">LOGROS</h2>
-        </div>
+
+    <div>
+      <h1 class="text-3xl sm:text-5xl font-bold text-[#FFB84D] mb-4" data-aos="fade-left">
+        Equipamiento
+      </h1>
+      <p class="text-base sm:text-lg text-gray-300 font-light leading-relaxed text-justify" data-aos="fade-up">
+        Contamos con aulas equipadas con tecnología moderna, biblioteca actualizada, conexión a internet, y espacios adaptados para una experiencia educativa completa y segura. Brindamos herramientas que fortalecen el proceso de enseñanza-aprendizaje.
+      </p>
+    </div>
+  </div>
+
+  <!-- Columna visual -->
+  <div class="flex-1 flex flex-col items-center lg:items-end text-center lg:text-right max-w-full px-2 sm:px-8 lg:px-12" data-aos="fade-right">
+    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 tracking-tight uppercase" data-aos="zoom-in">
+      Nuestros
+    </h1>
+    <div class="flex flex-col sm:flex-row items-center gap-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl transition duration-300 hover:scale-[1.01]">
+      <Image height={128} width={128} class="w-24 sm:w-32 md:w-36 h-auto object-contain" src="/assets/copa.png" alt="Copa" />
+      <div class="text-center sm:text-left lg:text-right">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#FFB84D]">Grandes</h2>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#FFB84D]">Logros</h2>
       </div>
     </div>
+  </div>
 </section>
-  

@@ -4,38 +4,84 @@ import CursoCard from "../components/CursoCard.astro";
 ---
 
 <Layout>
-  <div class="text-black px-4">
-    <h1 class="text-4xl font-extrabold mb-5 text-white text-center">OFERTAS EDUCATIVAS</h1>
+  <div class="text-black px-4 relative">
+    <!-- Título Principal con Estilo Moderno -->
+    <h1 class="text-5xl font-extrabold mb-6 text-[#FFB84D] text-center  relative z-10">
+      OFERTAS EDUCATIVAS
+    </h1>
+    
+    <p class="text-lg text-gray-300 text-center mb-8 max-w-3xl mx-auto font-medium">
+      Descubre nuestras ofertas educativas diseñadas para formar a los futuros profesionales de la educación. 
+      Con programas flexibles y actualizados, buscamos ofrecerte las herramientas necesarias para tu crecimiento académico y profesional.
+    </p>
 
-    <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3 sm:gap-1">
+    <!-- Tres Cajas de Texto con Detalles sobre las Carreras -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <div class="bg-gradient-to-r bg-white/5
+      border-white/10 text-white p-8 rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
+        <h3 class="text-[#FFB84D] text-2xl font-semibold mb-4 text-shadow-md">Formación Integral</h3>
+        <p class="text-sm opacity-80">
+          Nuestras carreras están diseñadas para brindarte una formación integral, preparándote no solo en contenidos teóricos, 
+          sino también en competencias prácticas que te permitirán destacar en el ámbito educativo.
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-r bg-white/5
+      border-white/10 text-white p-8 rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
+        <h3 class="text-2xl font-semibold mb-4 text-shadow-md text-[#FFB84D]">Flexibilidad en Horarios</h3>
+        <p class="text-sm opacity-80">
+          Ofrecemos programas con horarios flexibles, pensados para que puedas compatibilizar tu formación con otras actividades, 
+          como el trabajo o estudios adicionales, sin perder calidad educativa.
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-r bg-white/5
+      border-white/10 text-white p-8 rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
+        <h3 class="text-[#FFB84D] text-2xl font-semibold mb-4 text-shadow-md">Apoyo a la Inserción Laboral</h3>
+        <p class="text-sm opacity-80">
+          Contamos con alianzas estratégicas y un sistema de acompañamiento en la inserción laboral, para que puedas comenzar tu carrera profesional 
+          con las mejores oportunidades en el ámbito educativo.
+        </p>
+      </div>
+    </div>
+
+    <!-- Sección de Tarjetas de Cursos -->
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
       <CursoCard 
         title="Profesorado en Educación Básica"
-        image="/assets/carrera.jpg"
+        image="/assets/carrera.webp"
         alt="Educación Básica"
       />
       <CursoCard 
         title="Profesorado en Educación Inicial"
-        image="/assets/carrera.jpg"
+        image="/assets/carrera.webp"
         alt="Educación Inicial"
       />
       <CursoCard 
         title="Habilitación Pedagógica"
-        image="/assets/carrera.jpg"
+        image="/assets/carrera.webp"
         alt="Habilitación Pedagógica"
       />
-    </div>
-
-    <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
       <CursoCard 
         title="Formación Específica en Lengua y Literatura Castellana"
-        image="/assets/carrera.jpg"
+        image="/assets/carrera.webp"
         alt="Lengua y Literatura"
       />
       <CursoCard 
         title="Profesorado para 3° Ciclo Matemática"
-        image="/assets/carrera.jpg"
+        image="/assets/carrera.webp"
         alt="Profesorado Matemática"
       />
     </div>
+
+    <!-- Llamado a la Acción (CTA) -->
+    <div class="mt-12 text-center">
+      <p class="text-lg text-gray-300 mb-6">
+        Si estás listo para dar el siguiente paso en tu carrera educativa, ¡no esperes más! 
+        Inscríbete ahora y empieza a transformar tu futuro.
+      </p>
+
+    </div>
+
   </div>
 </Layout>

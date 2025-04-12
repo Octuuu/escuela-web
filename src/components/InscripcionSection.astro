@@ -1,44 +1,68 @@
 ---
 import { Image } from 'astro:assets';
 ---
-<section class="min-h-[calc(100vh)] flex flex-col lg:flex-row items-center gap-12 px-4 sm:px-6 py-12" data-aos="fade-up">
-  <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-    <div class="flex items-center gap-4 mb-4" data-aos="zoom-in">
-      <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold">¿CÓMO</h1>
-      <Image height={200} width={100} class="h-10 sm:h-14 md:h-16" src="/src/assets/inscripcion.png" alt="Inscripción" />
-    </div>
-    <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold" data-aos="fade-up">INSCRIBIRSE?</h1>
-  </div>
-  <div class="flex-1 w-full" data-aos="fade-left">
-    <h2 class="text-3xl sm:text-4xl lg:text-6xl font-extrabold mb-4">DOCUMENTOS</h2>
-    <ul class="list-disc list-inside text-base sm:text-lg mb-6 font-light text-left">
-      <li>Documento 1</li>
-      <li>Documento 2</li>
-      <li>Documento 3</li>
-      <li>Documento 4</li>
-      <li>Documento 5</li>
-    </ul>
-    <h1 class="text-4xl sm:text-5xl font-extrabold mt-7" data-aos="fade-right">ACERCARLO A</h1>
-    <p class="font-light mt-5 text-xl flex flex-col items-center sm:items-start" data-aos="zoom-in">
-      📍(Dirección IFD) 
-      <span class="flex flex-col text-center sm:text-left">
-        Instituto de formación docente San Ignacio
 
-        
-        <div class="w-full h-[300px] mt-4 rounded-xl overflow-hidden shadow-md">
-          <iframe
-          title="Mapa del Instituto de Formación Docente en San Ignacio"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d357.6231717000819!2d-57.030089499999996!3d-26.889768799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945a2415b23fffff%3A0xf9b0a3187a02ebf7!2sInstituto%20de%20Formaci%C3%B3n%20Docente!5e0!3m2!1ses-419!2spy!4v1712859903682!5m2!1ses-419!2spy"
-          width="100%"
-          height="100%"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-        
-      </span>
-    </p>
+<section class="min-h-screen flex flex-col lg:flex-row items-center gap-12 px-6 sm:px-10 py-20 bg-[rgb(1,1,40)] text-white">
+  <!-- Columna Izquierda -->
+  <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+    <!-- Título -->
+    <div class="flex items-center gap-4 mb-10" data-aos="zoom-in">
+      <h1 class="text-4xl sm:text-5xl font-semibold tracking-wider uppercase">¿Cómo</h1>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-[#FFB84D] uppercase" data-aos="fade-up">Inscribirse?</h1>
+    </div>
+
+    <!-- Tarjeta de documentos -->
+    <div class="bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl p-10 rounded-3xl max-w-xl w-full text-left transition-all duration-300 hover:scale-[1.015]">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6 pb-3 border-b border-white/10 tracking-wide">
+        Documentos Requeridos
+      </h2>
+      
+      <ul class="space-y-5 text-lg text-gray-200 font-light leading-relaxed pl-2">
+        <li class="flex items-center gap-3">
+          <span class="w-2 h-2 bg-[#FFB84D] rounded-full"></span> Formulario de inscripción
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="w-2 h-2 bg-[#FFB84D] rounded-full"></span> Copia de cédula autenticada
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="w-2 h-2 bg-[#FFB84D] rounded-full"></span> Certificado de estudios
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="w-2 h-2 bg-[#FFB84D] rounded-full"></span> Foto tipo carnet
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="w-2 h-2 bg-[#FFB84D] rounded-full"></span> Comprobante de pago
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Columna Derecha -->
+  <div class="flex-1 w-full space-y-8" data-aos="fade-left">
+    <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-2" data-aos="fade-right">
+      ACERCATE A
+    </h1>
+
+    <div class="bg-[#FFB84D]/10 border border-[#FFB84D]/20 p-6 rounded-2xl backdrop-blur-md shadow-lg">
+      <p class="text-[#FFE7B3] text-lg sm:text-xl font-light text-center">
+        📍 Dirección IFD<br />
+        <span class="block mt-1 font-medium text-white">
+          Instituto de Formación Docente, San Ignacio Misiones
+        </span>
+      </p>
+    </div>
+
+    <div class="w-full h-[300px] rounded-2xl overflow-hidden shadow-lg border border-white/10">
+      <iframe
+        title="Mapa del Instituto de Formación Docente en San Ignacio"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d357.6231717000819!2d-57.030089499999996!3d-26.889768799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945a2415b23fffff%3A0xf9b0a3187a02ebf7!2sInstituto%20de%20Formaci%C3%B3n%20Docente!5e0!3m2!1ses-419!2spy!4v1712859903682!5m2!1ses-419!2spy"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
   </div>
 </section>
