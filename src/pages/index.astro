@@ -2,35 +2,33 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from 'astro:assets';
 import logo from '../assets/logoifd2.webp';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 ---
 
 <Layout>
-  <section class="min-h-[calc(96vh-8rem)] flex flex-col items-center justify-center px-4 text-center w-full bg-[rgb(1,1,40)] text-white relative overflow-hidden hero-animate">
+  <section class="min-h-[calc(96vh-8rem)] flex flex-col items-center justify-center px-4 text-center w-full bg-[rgb(1,1,40)] text-white relative overflow-hidden">
 
-    <div class="relative z-10 flex flex-col lg:flex-row items-center gap-10">
+    <div class="relative flex flex-col lg:flex-row items-center gap-10">
       <div class="flex flex-col items-center lg:items-start">
-        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-extrabold text-white">
+        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-extrabold text-white animate-fade-in">
           FORMACIÓN
         </h1>
-        <div class="flex flex-col sm:flex-row items-center gap-4">
+        <div class="flex z-10 flex-col sm:flex-row items-center gap-4">
           <Image 
             width={400}      
             height={192} 
-            class="w-32 sm:w-40 md:w-48 lg:w-36" 
+            class="w-32 sm:w-40 md:w-48 lg:w-36 animate-fade-in-left" 
             src={logo} 
             alt="Logo IFD" 
             loading="eager" 
           />
-          <h1 class="text-5xl sm:text-7xl md:text-7xl lg:text-9xl font-extrabold text-white">
+          <h1 class="text-5xl sm:text-7xl md:text-7xl lg:text-9xl font-extrabold text-white animate-fade-in-up">
             DOCENTE
           </h1>
         </div>
       </div>
     </div>
 
-    <p class="mt-20 text-lg sm:text-xl md:text-xl font-roboto-slab italic font-semibold">
+    <p class="mt-20 text-lg z-50 sm:text-xl md:text-xl font-roboto-slab italic font-semibold">
       "El objetivo de la educación es crear personas capaces de hacer cosas nuevas, <br class="hidden sm:block" />
       no solamente repetir lo que otras generaciones hacen"
     </p>
