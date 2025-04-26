@@ -16,15 +16,10 @@ try {
 } catch (err) {
   console.error('Error al obtener comentarios:', err);
 }
-interface Proyecto {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  pdf: string;
-}
 
-let proyectos: Proyecto[] = [];
+
+
+let proyectos=[]; 
 
 try {
   const res = await fetch('https://ifd-backend-production.up.railway.app/api/proyectos');
