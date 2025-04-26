@@ -2,13 +2,7 @@
 import CommentCard from '../../components/CommentCard.astro';
 import Layout from '../../layouts/Layout.astro';
 
-interface Comentario {
-  id: number;
-  username: string;
-  content: string;
-}
-
-let comentarios: Comentario[] = [];
+let comentarios = [];
 
 try {
   const res = await fetch('https://ifd-backend-production.up.railway.app/api/comments/inicio');
