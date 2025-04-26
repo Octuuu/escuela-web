@@ -1,0 +1,58 @@
+---
+interface Props {
+  id: number;
+  title: string;
+  description: string;
+  image: string | null;
+  pdf: string | null;
+}
+
+const { title, description, image, pdf } = Astro.props;
+
+const extension = pdf?.split('.').pop()?.toLowerCase();
+const isPDF = extension === 'pdf';
+const isWord = extension === 'doc' || extension === 'docx';
+---
+
+<div class="bg-white/80 border border-gray-200 backdrop-blur-md shadow-lg rounded-2xl p-6 text-black dark:bg-white/10 dark:border-white/10 dark:text-white transition">
+  <h2 class="text-xl font-semibold mb-2">{title}</h2>
+  <p class="mb-4">{description}</p>
+
+  {image && (
+    <img
+      src={`https://ifd-backend-production.up.railway.app/uploads/${image}`}
+      alt={title}
+      class="rounded-lg mb-4 mx-auto object-cover max-h-80 w-full"
+    />
+  )}
+
+  {pdf && (
+    <div class="flex justify-center mt-4">
+      {isPDF ? (
+        <a
+          href={`https://ifd-backend-production.up.railway.app/uploads/${pdf}`}
+          target="_blank"
+          class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-md"
+        >
+          Ver PDF
+        </a>
+      ) : isWord ? (
+        <a
+          href={`https://ifd-backend-production.up.railway.app/uploads/${pdf}`}
+          target="_blank"
+          class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-md"
+        >
+          Descargar Word
+        </a>
+      ) : (
+        <a
+          href={`https://ifd-backend-production.up.railway.app/uploads/${pdf}`}
+          target="_blank"
+          class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-md"
+        >
+          Descargar Archivo
+        </a>
+      )}
+    </div>
+  )}
+</div>

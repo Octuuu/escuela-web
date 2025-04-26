@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <html lang="es">
+  <head>
+    <title>Login Admin</title>
+  </head>
+  <body class="min-h-screen flex items-center justify-center bg-gray-100">
+    <form id="loginForm" class="bg-white p-6 rounded shadow-md w-full max-w-sm text-black">
+      <h1 class="text-xl font-bold mb-4">Iniciar sesión</h1>
+
+      <div id="mensaje" class="hidden mb-4 p-2 text-center rounded"></div>
+
+      <input type="email" name="email" placeholder="Correo" required class="w-full mb-3 p-2 border rounded" />
+      <input type="password" name="password" placeholder="Contraseña" required class="w-full mb-4 p-2 border rounded" />
+      <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">Entrar</button>
+    </form>
+
+    <script>
+      const form = document.getElementById('loginForm') as HTMLFormElement | null;
+      const mensaje = document.getElementById('mensaje');
+    
+      if (form && mensaje) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+    
+          const email = (form.elements.namedItem('email') as HTMLInputElement)?.value.trim().toLowerCase();
+          const password = (form.elements.namedItem('password') as HTMLInputElement)?.value.trim();
+    
+          const adminEmail = 'admin@gmail.com';
+          const adminPassword = '52838097';
+    
+          if (!email || !password) {
+            mensaje.textContent = 'Por favor, complete todos los campos.';
+            mensaje.className = 'bg-yellow-100 text-yellow-800 p-2 rounded mb-4';
+            mensaje.classList.remove('hidden');
+            return;
+          }
+    
+          if (email === adminEmail && password === adminPassword) {
+            mensaje.textContent = '✅ Credenciales correctas. Redirigiendo...';
+            mensaje.className = 'bg-green-100 text-green-800 p-2 rounded mb-4';
+            mensaje.classList.remove('hidden');
+    
+            setTimeout(() => {
+              window.location.href = '/admin/panel';
+            }, 1500);
+          } else {
+            mensaje.textContent = '❌ Credenciales incorrectas.';
+            mensaje.className = 'bg-red-100 text-red-800 p-2 rounded mb-4';
+            mensaje.classList.remove('hidden');
+          }
+        });
+      }
+    </script>
+    
+  </body>
+  </html>
+</Layout>

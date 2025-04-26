@@ -2,11 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from 'astro:assets';
 import logo from '../assets/logoifd2.webp';
+import MisionVision from "../components/MisionVision.astro";
 ---
 
 <Layout>
-  <section class="min-h-[calc(96vh-8rem)] flex flex-col items-center justify-center px-4 text-center w-full bg-[rgb(1,1,40)] text-white relative overflow-hidden">
-
+  <section class="min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center px-4 text-center w-full bg-[rgb(1,1,40)] text-white relative overflow-hidden">
     <div class="relative flex flex-col lg:flex-row items-center gap-10">
       <div class="flex flex-col items-center lg:items-start">
         <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-extrabold text-white animate-fade-in">
@@ -28,11 +28,15 @@ import logo from '../assets/logoifd2.webp';
       </div>
     </div>
 
-    <p class="mt-20 text-lg z-50 sm:text-xl md:text-xl font-roboto-slab italic font-semibold">
+    <p class="mt-20 text-lg sm:text-xl md:text-xl font-roboto-slab italic font-semibold">
       "El objetivo de la educación es crear personas capaces de hacer cosas nuevas, <br class="hidden sm:block" />
       no solamente repetir lo que otras generaciones hacen"
     </p>
   </section>
+
+  <MisionVision />
+
+
+  
+  
 </Layout>
-
-
