@@ -100,7 +100,9 @@
         body: formData,
       });
 
+      // Verificar si la respuesta es exitosa y leerla
       const data = await res.json();
+      console.log('Respuesta del servidor:', data);
 
       if (res.ok) {
         mensaje.textContent = '✅ Proyecto subido con éxito.';
@@ -108,7 +110,7 @@
         form.reset();
         setTimeout(() => location.reload(), 1200);
       } else {
-        mensaje.textContent = '❌ Error al subir el proyecto: ' + (data?.error || '');
+        mensaje.textContent = '❌ Error al subir el proyecto: ' + (data?.error || 'Error desconocido');
         mensaje.className = 'text-red-600 dark:text-red-400';
       }
     } catch (error) {
@@ -116,5 +118,5 @@
       mensaje.className = 'text-red-600 dark:text-red-400';
       console.error(error);
     }
-  });
+  });  
 </script>
