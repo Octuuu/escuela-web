@@ -26,6 +26,7 @@ const proyectos: Proyecto[] = await response.json();
             {proyectos.map((p) => (
                 <ProyectoCard {...p} />
             ))}
+            
         </div>
 
         <Foro />
