@@ -1,14 +1,6 @@
 ---
-export interface Comentario {
-  id: number;
-  username: string;
-  content: string;
-}
-
-export let comentario: Comentario;
+const { comentario } = Astro.props;
 ---
-
-
 
 <div class="bg-white/80 border border-gray-200 backdrop-blur-md shadow-md rounded-xl p-4 text-black dark:bg-white/10 dark:border-white/10 dark:text-white transition space-y-2">
   <h3 class="font-semibold text-blue-600 dark:text-blue-400 text-lg flex items-center gap-2">
@@ -19,4 +11,3 @@ export let comentario: Comentario;
   </h3>
   <p class="text-gray-800 dark:text-gray-200">{comentario.content}</p>
 </div>
-
