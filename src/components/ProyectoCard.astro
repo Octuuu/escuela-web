@@ -1,5 +1,5 @@
 ---
-interface Props {
+interface Proyecto {
   id: number;
   title: string;
   description: string;
@@ -7,52 +7,83 @@ interface Props {
   pdf: string | null;
 }
 
-const { title, description, image, pdf } = Astro.props;
+let proyectos: Proyecto[] = [];
+--- 
 
-const extension = pdf?.split('.').pop()?.toLowerCase();
-const isPDF = extension === 'pdf';
-const isWord = extension === 'doc' || extension === 'docx';
----
+<div id="proyectos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
 
-<div class="bg-white/80 border border-gray-200 backdrop-blur-md shadow-lg rounded-2xl p-6 text-black dark:bg-white/10 dark:border-white/10 dark:text-white transition">
-  <h2 class="text-xl font-semibold mb-2">{title}</h2>
-  <p class="mb-4">{description}</p>
+<script type="module">
+  const proyectosContainer = document.getElementById('proyectos');
 
-  {image && (
-    <img
-      src={`https://ifd-backend-production.up.railway.app/uploads/${image}`}
-      alt={title}
-      class="rounded-lg mb-4 mx-auto object-cover max-h-80 w-full"
-    />
-  )}
+  async function cargarProyectos() {
+    try {
+      const res = await fetch('https://ifd-backend-production.up.railway.app/api/proyectos');
+      const data = await res.json();
+      
+      // Limpia el contenedor antes de cargar nuevos proyectos
+      proyectosContainer.innerHTML = '';
 
-  {pdf && (
-    <div class="flex justify-center mt-4">
-      {isPDF ? (
-        <a
-          href={`https://ifd-backend-production.up.railway.app/uploads/${pdf}`}
-          target="_blank"
-          class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-md"
-        >
-          Ver PDF
-        </a>
-      ) : isWord ? (
-        <a
-          href={`https://ifd-backend-production.up.railway.app/uploads/${pdf}`}
-          target="_blank"
-          class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-md"
-        >
-          Descargar Word
-        </a>
-      ) : (
-        <a
-          href={`https://ifd-backend-production.up.railway.app/uploads/${pdf}`}
-          target="_blank"
-          class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-md"
-        >
-          Descargar Archivo
-        </a>
-      )}
-    </div>
-  )}
-</div>
+      data.forEach(proyecto => {
+        const extension = proyecto.pdf ? proyecto.pdf.split('.').pop().toLowerCase() : null;
+        const isPDF = extension === 'pdf';
+        const isWord = extension === 'doc' || extension === 'docx';
+
+        // Crear contenedor de la tarjeta del proyecto
+        const card = document.createElement('div');
+        card.className = 'bg-white/80 border border-gray-200 backdrop-blur-md shadow-lg rounded-2xl p-6 text-black dark:bg-white/10 dark:border-white/10 dark:text-white transition';
+
+        // Crear el título
+        const title = document.createElement('h2');
+        title.className = 'text-xl font-semibold mb-2';
+        title.textContent = proyecto.title;
+        card.appendChild(title);
+
+        // Crear la descripción
+        const description = document.createElement('p');
+        description.className = 'mb-4';
+        description.textContent = proyecto.description;
+        card.appendChild(description);
+
+        // Crear la imagen si existe
+        if (proyecto.image) {
+          const img = document.createElement('img');
+          img.src = `https://ifd-backend-production.up.railway.app/uploads/${proyecto.image}`;
+          img.alt = proyecto.title;
+          img.className = 'rounded-lg mb-4 mx-auto object-cover max-h-80 w-full';
+          card.appendChild(img);
+        }
+
+        // Crear el enlace al archivo PDF/Word si existe
+        if (proyecto.pdf) {
+          const linkContainer = document.createElement('div');
+          linkContainer.className = 'flex justify-center mt-4';
+
+          const link = document.createElement('a');
+          link.href = `https://ifd-backend-production.up.railway.app/uploads/${proyecto.pdf}`;
+          link.target = "_blank";
+          link.className = 'bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-md';
+
+          if (isPDF) {
+            link.textContent = 'Ver PDF';
+          } else if (isWord) {
+            link.textContent = 'Descargar Word';
+          } else {
+            link.textContent = `Descargar ${extension?.toUpperCase()}`;
+          }
+
+          linkContainer.appendChild(link);
+          card.appendChild(linkContainer);
+        }
+
+        // Añadir la tarjeta al contenedor principal
+        proyectosContainer.appendChild(card);
+      });
+
+    } catch (error) {
+      proyectosContainer.innerHTML = `<p class="text-red-600 dark:text-red-400">❌ Error al cargar proyectos.</p>`;
+      console.error('Error cargando proyectos:', error);
+    }
+  }
+
+  cargarProyectos();
+</script>
