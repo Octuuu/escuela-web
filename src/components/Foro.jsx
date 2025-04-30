@@ -1,4 +1,3 @@
-// src/components/Foro.jsx
 import React, { useEffect, useState } from 'react';
 import CommentCard from './CommentCard.jsx';
 
