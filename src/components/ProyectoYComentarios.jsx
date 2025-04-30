@@ -72,8 +72,8 @@ const ProyectoYComentarios = () => {
                 className="flex justify-between items-center bg-white/5 border border-white/10 backdrop-blur-lg p-4 rounded-lg shadow-xl"
               >
                 <div>
-                  <p className="text-white font-bold">{comentario.name}</p>
-                  <p className="text-white/80">{comentario.message}</p>
+                  <p className="text-white font-bold">{comentario.username}</p>
+                  <p className="text-white/80">{comentario.content}</p>
                 </div>
                 <button
                   onClick={() => eliminarComentario(comentario.id)}
