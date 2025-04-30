@@ -84,7 +84,7 @@ const ProyectoYComentarios = () => {
               </div>
             ))
           ) : (
-            <p className="text-center text-white/70">No hay comentarios aún.</p>
+            <p className="text-center text-white/70">No hay comentarios aun</p>
           )}
         </div>
       </section>

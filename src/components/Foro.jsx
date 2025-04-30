@@ -33,7 +33,7 @@ export default function Foro() {
 
       if (res.ok) {
         setFormData({ name: '', content: '' });
-        setMensaje({ tipo: 'success', texto: 'Comentario enviado con éxito 🎉' });
+        setMensaje({ tipo: 'success', texto: 'Comentario enviado' });
         setTimeout(() => location.reload(), 1500);
       } else {
         const error = await res.json();
@@ -87,7 +87,7 @@ export default function Foro() {
             <CommentCard key={comentario.id} comentario={comentario} />
           ))
         ) : (
-          <p className="text-center text-white/70">No hay comentarios aún</p>
+          <p className="text-center text-white/70">No hay comentarios aun</p>
         )}
       </div>
     </div>
