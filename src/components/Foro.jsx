@@ -51,7 +51,6 @@ export default function Foro() {
 
   return (
     <div className="max-w-3xl mx-auto mt-12 px-4">
-      <h1 className="text-3xl font-semibold text-center text-white mb-8">Foro</h1>
 
       {mensaje && (
         <div className={`mb-6 px-4 py-3 rounded-lg text-center font-medium ${mensaje.tipo === 'success'
@@ -62,6 +61,7 @@ export default function Foro() {
       )}
 
       <form onSubmit={handleSubmit} className="bg-white/5 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-xl space-y-4 text-white">
+        <h2 class="text-3xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">Foro de comentarios</h2>
         <input
           type="text"
           name="name"
