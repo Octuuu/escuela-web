@@ -3,7 +3,7 @@ import CommentCard from './CommentCard.jsx';
 
 export default function Foro() {
   const [comentarios, setComentarios] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [mostrarTodos, setMostrarTodos] = useState(false);
   const [formData, setFormData] = useState({ name: '', content: '' });
   const [mensaje, setMensaje] = useState(null);
 
@@ -47,11 +47,7 @@ export default function Foro() {
     setTimeout(() => setMensaje(null), 4000);
   };
 
-  const comentariosVisibles = comentarios.slice(0, visibleCount);
-
-  const handleVerMas = () => {
-    setVisibleCount((prev) => prev + 10);
-  };
+  const comentariosVisibles = mostrarTodos ? comentarios : comentarios.slice(0, 10);
 
   return (
     <div className="max-w-3xl mx-auto mt-12 px-4">
@@ -89,18 +85,18 @@ export default function Foro() {
       </form>
 
       <div className="mt-10 space-y-2">
-        {comentariosVisibles.length > 0 ? (
+        {comentarios.length > 0 ? (
           <>
             {comentariosVisibles.map((comentario) => (
               <CommentCard key={comentario.id} comentario={comentario} />
             ))}
-            {visibleCount < comentarios.length && (
+            {comentarios.length > 10 && (
               <div className="flex justify-center mt-6">
                 <button
-                  onClick={handleVerMas}
+                  onClick={() => setMostrarTodos(!mostrarTodos)}
                   className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition shadow"
                 >
-                  Ver más
+                  {mostrarTodos ? 'Ver menos' : 'Ver más'}
                 </button>
               </div>
             )}
