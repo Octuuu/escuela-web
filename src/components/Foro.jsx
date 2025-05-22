@@ -3,6 +3,7 @@ import CommentCard from './CommentCard.jsx';
 
 export default function Foro() {
   const [comentarios, setComentarios] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(10);
   const [formData, setFormData] = useState({ name: '', content: '' });
   const [mensaje, setMensaje] = useState(null);
 
@@ -46,6 +47,12 @@ export default function Foro() {
     setTimeout(() => setMensaje(null), 4000);
   };
 
+  const comentariosVisibles = comentarios.slice(0, visibleCount);
+
+  const handleVerMas = () => {
+    setVisibleCount((prev) => prev + 10);
+  };
+
   return (
     <div className="max-w-3xl mx-auto mt-12 px-4">
       <h1 className="text-3xl font-semibold text-center text-white mb-8">Foro</h1>
@@ -82,12 +89,24 @@ export default function Foro() {
       </form>
 
       <div className="mt-10 space-y-2">
-        {comentarios.length > 0 ? (
-          comentarios.map((comentario) => (
-            <CommentCard key={comentario.id} comentario={comentario} />
-          ))
+        {comentariosVisibles.length > 0 ? (
+          <>
+            {comentariosVisibles.map((comentario) => (
+              <CommentCard key={comentario.id} comentario={comentario} />
+            ))}
+            {visibleCount < comentarios.length && (
+              <div className="flex justify-center mt-6">
+                <button
+                  onClick={handleVerMas}
+                  className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition shadow"
+                >
+                  Ver más
+                </button>
+              </div>
+            )}
+          </>
         ) : (
-          <p className="text-center text-white/70">No hay comentarios aun</p>
+          <p className="text-center text-white/70">No hay comentarios aún</p>
         )}
       </div>
     </div>
