@@ -2,19 +2,18 @@
 
 import Layout from "../layouts/Layout.astro";
 import Foro from '../components/Foro.jsx';
-import ProjectForm from "../components/ProyectoForm.astro";
+import ProyectoForm from "../components/ProyectoForm.jsx";
 import ProyectosList from "../components/ProyectosList.jsx"; 
 ---
 
 <Layout>
   <section>
-    <ProjectForm />
-
+    <ProyectoForm client:load />
+    
     <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">Proyectos Subidos</h2>
 
     <ProyectosList client:load /> 
 
-    <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">Comentarios</h2>
     <Foro client:load />
   </section>
 </Layout>

@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabaseClient';
 
 export default function ProyectosList() {
   const [proyectos, setProyectos] = useState([]);
   const [mostrarTodos, setMostrarTodos] = useState(false);
 
   useEffect(() => {
-    fetch('https://ifd-backend-production.up.railway.app/api/proyectos')
-      .then(res => res.json())
-      .then(data => setProyectos(data))
-      .catch(err => console.error('Error cargando proyectos:', err));
+    async function cargarProyectos() {
+      const { data, error } = await supabase
+        .from('proyectos')
+        .select('*')
+        .order('id', { ascending: false });
+
+      if (error) {
+        console.error('Error cargando proyectos:', error);
+      } else {
+        setProyectos(data);
+      }
+    }
+    cargarProyectos();
   }, []);
 
   const proyectosVisibles = mostrarTodos ? proyectos : proyectos.slice(0, 8);
@@ -16,30 +26,36 @@ export default function ProyectosList() {
   return (
     <>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {proyectosVisibles.map(p => (
+        {proyectosVisibles.map((p) => (
           <div
             key={p.id}
             className="bg-white/80 border border-gray-200 backdrop-blur-md shadow-lg rounded-2xl p-6 text-black dark:bg-white/10 dark:border-white/10 dark:text-white transition"
           >
             <h2 className="text-xl font-semibold mb-2">{p.title}</h2>
             <p className="mb-4">{p.description}</p>
-            {p.image && (
+
+            {/* Imagen */}
+            {p.image_url && (
               <img
-                src={`https://ifd-backend-production.up.railway.app/uploads/${p.image}`}
+                src={p.image_url}
                 alt={p.title}
                 className="rounded-lg mb-4 mx-auto object-cover max-h-80 w-full"
+                loading="lazy"
               />
             )}
-            {p.pdf && (
+
+            {/* PDF o archivo adjunto */}
+            {p.pdf_url && (
               <div className="flex justify-center mt-4">
                 <a
-                  href={`https://ifd-backend-production.up.railway.app/uploads/${p.pdf}`}
+                  href={p.pdf_url}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-md"
                 >
-                  {p.pdf.endsWith('.pdf')
+                  {p.pdf_url.endsWith('.pdf')
                     ? 'Ver PDF'
-                    : p.pdf.endsWith('.doc') || p.pdf.endsWith('.docx')
+                    : p.pdf_url.endsWith('.doc') || p.pdf_url.endsWith('.docx')
                     ? 'Descargar Word'
                     : 'Descargar Archivo'}
                 </a>
@@ -49,6 +65,7 @@ export default function ProyectosList() {
         ))}
       </div>
 
+      {/* Botón para ver más o menos */}
       {proyectos.length > 8 && (
         <div className="flex justify-center mt-8">
           <button

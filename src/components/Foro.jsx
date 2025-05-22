@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CommentCard from './CommentCard.jsx';
+import { supabase } from '../lib/supabaseClient.js'; 
 
 export default function Foro() {
   const [comentarios, setComentarios] = useState([]);
@@ -8,40 +9,49 @@ export default function Foro() {
   const [mensaje, setMensaje] = useState(null);
 
   useEffect(() => {
-    fetch('https://ifd-backend-production.up.railway.app/api/comments/inicio')
-      .then(res => res.json())
-      .then(setComentarios)
-      .catch(err => {
-        console.error('Error al obtener comentarios:', err);
+    const fetchComentarios = async () => {
+      const { data, error } = await supabase
+        .from('comments')
+        .select('*')
+        .eq('pageId', 'inicio')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error al obtener comentarios:', error);
         setComentarios([]);
-      });
+      } else {
+        setComentarios(data);
+      }
+    };
+
+    fetchComentarios();
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const payload = {
-      username: formData.name.trim(),
+      username: formData.name.trim() || 'Anónimo',
       content: formData.content.trim(),
       pageId: 'inicio',
     };
 
-    try {
-      const res = await fetch('https://ifd-backend-production.up.railway.app/api/comments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+    const { error } = await supabase.from('comments').insert([payload]);
 
-      if (res.ok) {
-        setFormData({ name: '', content: '' });
-        setMensaje({ tipo: 'success', texto: 'Comentario enviado' });
-        setTimeout(() => location.reload(), 1500);
-      } else {
-        const error = await res.json();
-        setMensaje({ tipo: 'error', texto: error.error });
-      }
-    } catch {
-      setMensaje({ tipo: 'error', texto: 'Error de conexión.' });
+    if (!error) {
+      setFormData({ name: '', content: '' });
+      setMensaje({ tipo: 'success', texto: 'Comentario enviado' });
+
+      // actualizar comentarios sin recargar
+      const { data } = await supabase
+        .from('comments')
+        .select('*')
+        .eq('pageId', 'inicio')
+        .order('created_at', { ascending: false });
+
+      setComentarios(data);
+    } else {
+      setMensaje({ tipo: 'error', texto: 'Error al enviar comentario' });
     }
 
     setTimeout(() => setMensaje(null), 4000);
@@ -51,17 +61,18 @@ export default function Foro() {
 
   return (
     <div className="max-w-3xl mx-auto mt-12 px-4">
-
       {mensaje && (
-        <div className={`mb-6 px-4 py-3 rounded-lg text-center font-medium ${mensaje.tipo === 'success'
-          ? 'bg-green-100 text-green-800 border border-green-300'
-          : 'bg-red-100 text-red-800 border border-red-300'}`}>
+        <div className={`mb-6 px-4 py-3 rounded-lg text-center font-medium ${
+          mensaje.tipo === 'success'
+            ? 'bg-green-100 text-green-800 border border-green-300'
+            : 'bg-red-100 text-red-800 border border-red-300'
+        }`}>
           {mensaje.texto}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="bg-white/5 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-xl space-y-4 text-white">
-        <h2 class="text-3xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">Foro de comentarios</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">Foro de comentarios</h2>
         <input
           type="text"
           name="name"
