@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export default function ProyectosList() {
   const [proyectos, setProyectos] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [mostrarTodos, setMostrarTodos] = useState(false);
 
   useEffect(() => {
     fetch('https://ifd-backend-production.up.railway.app/api/proyectos')
@@ -11,11 +11,7 @@ export default function ProyectosList() {
       .catch(err => console.error('Error cargando proyectos:', err));
   }, []);
 
-  const handleVerMas = () => {
-    setVisibleCount(prev => prev + 10);
-  };
-
-  const proyectosVisibles = proyectos.slice(0, visibleCount);
+  const proyectosVisibles = mostrarTodos ? proyectos : proyectos.slice(0, 8);
 
   return (
     <>
@@ -53,13 +49,13 @@ export default function ProyectosList() {
         ))}
       </div>
 
-      {visibleCount < proyectos.length && (
+      {proyectos.length > 8 && (
         <div className="flex justify-center mt-8">
           <button
-            onClick={handleVerMas}
+            onClick={() => setMostrarTodos(!mostrarTodos)}
             className="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition font-semibold shadow"
           >
-            Ver más
+            {mostrarTodos ? 'Ver menos' : 'Ver más'}
           </button>
         </div>
       )}
