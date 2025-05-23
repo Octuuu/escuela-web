@@ -4,21 +4,51 @@ import CursoCard from "../components/CursoCard.astro";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Proximamente from "../components/Proximamente.astro";
+import MallaCarreras from "../components/MallaCarreras.astro";
+import { carreras } from "../data/carreras";
 ---
 
 <Layout>
-  <Proximamente />
-  <!--  
-  <div class="text-black px-4 relative">
+
+  <div class="text-black  items-center flex flex-col px-4 relative">
     
-    <h1 class="text-5xl font-extrabold mb-6 text-[#FFB84D] text-center  relative z-10 animate-fade-in" >
+    <div>
+      <h1 class="text-5xl font-extrabold mb-6 text-[#FFB84D] text-center  relative z-10 animate-fade-in" >
       OFERTAS EDUCATIVAS
-    </h1>
-    
-    <p class="text-xl text-gray-300 text-center mb-8 max-w-3xl mx-auto font-light animate-fade-in" >
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error dicta veritatis cum harum vel, possimus illo ipsam ducimus aliquam soluta quasi, commodi cumque libero iusto, nostrum reiciendis ratione incidunt fugiat.
+      </h1>
+      <div class="w-32 h-2 mt-4 bg-[#FFB84D] rounded-full animate-fade-in"></div>
+    </div>
+
+      
+    <p class="text-xl mt-10 text-gray-300 text-center mb-8 max-w-3xl mx-auto font-light animate-fade-in" >
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error dicta verittis cum harum vel, possimus illo ipsam ducimus aliquam soluta quasi, commodi cumque libero iusto, nostrum reiciendis ratione incidunt fugiat.
     </p>
 
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 items-center md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-7 lg:w-full animate-fade-in">
+      {carreras.map((carrera) => (
+        <MallaCarreras
+          name={carrera.name}
+          duracion={carrera.duracion}
+          image={carrera.image}
+          alt={carrera.alt}
+          perfil={`/carreras/${carrera.slug}`}
+        />
+      ))}
+    </div>
+    <script>
+      /*
+       name: "Profesorado en Educación Escolar Básica",
+        duracion: "6 semestres",
+        modalidad: "presencial",
+        titulo: "Profesor/a de Educación Escolar Básica 1.º y 2.º ciclo",
+        image: "/assets/usuario.png",
+        alt: "Foto de Lic. Fulanito",
+        mallaCurricular: "",
+        slug: "Profesorado en Educación Escolar Básica",
+         */
+    </script>
+
+    <!--
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
       <div class="bg-gradient-to-r bg-white/5
       border-white/10 text-white p-8 rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
@@ -79,9 +109,10 @@ import Proximamente from "../components/Proximamente.astro";
       </p>
 
     </div>
+    -->
 
   </div>
-  -->
+
 </Layout>
 
 

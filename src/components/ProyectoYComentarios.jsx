@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabaseClient';
 
 const ProyectoYComentarios = () => {
   const [comentarios, setComentarios] = useState([]);
@@ -6,57 +7,78 @@ const ProyectoYComentarios = () => {
   const [mensajeComentario, setMensajeComentario] = useState('');
   const [mensajeProyecto, setMensajeProyecto] = useState('');
   const [proyectoIdAEliminar, setProyectoIdAEliminar] = useState(null);
+  const [mostrarTodos, setMostrarTodos] = useState(false);
 
   useEffect(() => {
-    fetch('https://ifd-backend-production.up.railway.app/api/comments/inicio')
-      .then((res) => res.json())
-      .then(setComentarios)
-      .catch(() => console.error('Error al obtener comentarios'));
+    const fetchComentarios = async () => {
+      const { data, error } = await supabase
+        .from('comments')
+        .select('*')
+        .order('id', { ascending: false });
+      if (!error) setComentarios(data);
+    };
 
-    fetch('https://ifd-backend-production.up.railway.app/api/proyectos')
-      .then((res) => res.json())
-      .then(setProyectos)
-      .catch(() => console.error('Error al obtener proyectos'));
+    const fetchProyectos = async () => {
+      const { data, error } = await supabase
+        .from('proyectos')
+        .select('*')
+        .order('id', { ascending: false });
+
+      if (!error) {
+        const proyectosConUrls = data.map((proyecto) => {
+          const image_url = proyecto.image
+            ? supabase.storage.from('proyectos').getPublicUrl(proyecto.image).data.publicUrl
+            : null;
+
+          const pdf_url = proyecto.pdf
+            ? supabase.storage.from('proyectos').getPublicUrl(proyecto.pdf).data.publicUrl
+            : null;
+
+          return {
+            ...proyecto,
+            image_url,
+            pdf_url,
+          };
+        });
+
+        setProyectos(proyectosConUrls);
+      }
+    };
+
+    fetchComentarios();
+    fetchProyectos();
   }, []);
 
   const eliminarComentario = async (id) => {
-    try {
-      const res = await fetch(`https://ifd-backend-production.up.railway.app/api/comments/${id}`, {
-        method: 'DELETE'
-      });
-      if (res.ok) {
-        setComentarios((prev) => prev.filter((c) => c.id !== id));
-        setMensajeComentario('Comentario eliminado correctamente.');
-      } else {
-        setMensajeComentario('Error al eliminar el comentario.');
-      }
-    } catch {
-      setMensajeComentario('Error de conexión.');
+    const { error } = await supabase.from('comments').delete().eq('id', id);
+    if (!error) {
+      setComentarios((prev) => prev.filter((c) => c.id !== id));
+      setMensajeComentario('Comentario eliminado correctamente.');
+    } else {
+      setMensajeComentario('Error al eliminar el comentario.');
     }
     setTimeout(() => setMensajeComentario(''), 4000);
   };
 
   const eliminarProyecto = async () => {
     if (!proyectoIdAEliminar) return;
-    try {
-      const res = await fetch(`https://ifd-backend-production.up.railway.app/api/proyectos/${proyectoIdAEliminar}`, {
-        method: 'DELETE'
-      });
-      if (res.ok) {
-        setProyectos((prev) => prev.filter((p) => p.id !== proyectoIdAEliminar));
-        setMensajeProyecto('Proyecto eliminado correctamente.');
-      } else {
-        setMensajeProyecto('Error al eliminar el proyecto.');
-      }
-    } catch {
-      setMensajeProyecto('Error de conexión.');
+
+    const { error } = await supabase.from('proyectos').delete().eq('id', proyectoIdAEliminar);
+    if (!error) {
+      setProyectos((prev) => prev.filter((p) => p.id !== proyectoIdAEliminar));
+      setMensajeProyecto('Proyecto eliminado correctamente.');
+    } else {
+      setMensajeProyecto('Error al eliminar el proyecto.');
     }
     setProyectoIdAEliminar(null);
     setTimeout(() => setMensajeProyecto(''), 4000);
   };
 
+  const proyectosVisibles = mostrarTodos ? proyectos : proyectos.slice(0, 8);
+
   return (
     <div className="text-white">
+      {/* COMENTARIOS */}
       <section className="max-w-3xl mx-auto mt-12 px-4">
         <h1 className="text-3xl font-semibold text-center mb-8">Foro de Comentarios</h1>
         {mensajeComentario && (
@@ -89,6 +111,7 @@ const ProyectoYComentarios = () => {
         </div>
       </section>
 
+      {/* PROYECTOS */}
       <section className="max-w-5xl mx-auto mt-12 px-4">
         <h1 className="text-3xl font-bold text-center mb-8">Lista de Proyectos</h1>
         {mensajeProyecto && (
@@ -96,31 +119,46 @@ const ProyectoYComentarios = () => {
             {mensajeProyecto}
           </div>
         )}
-        <div className="grid md:grid-cols-2 gap-6">
-          {proyectos.length > 0 ? (
-            proyectos.map((proyecto) => (
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {proyectosVisibles.length > 0 ? (
+            proyectosVisibles.map((p) => (
               <div
-                key={proyecto.id}
-                className="bg-white/5 border border-white/10 backdrop-blur-lg p-6 rounded-lg shadow-xl relative"
+                key={p.id}
+                className="bg-white/80 border border-gray-200 backdrop-blur-md shadow-lg rounded-2xl p-6 text-black dark:bg-white/10 dark:border-white/10 dark:text-white transition"
               >
-                <img
-                  src={`https://ifd-backend-production.up.railway.app/uploads/${proyecto.image}`}
-                  alt={proyecto.title}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <h2 className="text-xl font-semibold">{proyecto.title}</h2>
-                <p className="text-white/80 mb-3">{proyecto.description}</p>
-                <a
-                  href={`https://ifd-backend-production.up.railway.app/uploads/${proyecto.pdf}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 underline text-sm block mb-2"
-                >
-                  Ver PDF
-                </a>
+                <h2 className="text-xl font-semibold mb-2">{p.title}</h2>
+                <p className="mb-4">{p.description}</p>
+
+                {p.image_url && (
+                  <img
+                    src={p.image_url}
+                    alt={p.title}
+                    className="rounded-lg mb-4 mx-auto object-cover max-h-80 w-full"
+                    loading="lazy"
+                  />
+                )}
+
+                {p.pdf_url && (
+                  <div className="flex justify-center mt-4">
+                    <a
+                      href={p.pdf_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-md"
+                    >
+                      {p.pdf_url.endsWith('.pdf')
+                        ? 'Ver PDF'
+                        : p.pdf_url.endsWith('.doc') || p.pdf_url.endsWith('.docx')
+                        ? 'Descargar Word'
+                        : 'Descargar Archivo'}
+                    </a>
+                  </div>
+                )}
+
                 <button
-                  onClick={() => setProyectoIdAEliminar(proyecto.id)}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg mt-2"
+                  onClick={() => setProyectoIdAEliminar(p.id)}
+                  className="bg-red-600 text-white px-4 py-2 rounded-lg mt-4 hover:bg-red-700 transition font-semibold shadow"
                 >
                   Eliminar proyecto
                 </button>
@@ -131,7 +169,18 @@ const ProyectoYComentarios = () => {
           )}
         </div>
 
-        {/* Modal */}
+        {proyectos.length > 8 && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={() => setMostrarTodos(!mostrarTodos)}
+              className="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition font-semibold shadow"
+            >
+              {mostrarTodos ? 'Ver menos' : 'Ver más'}
+            </button>
+          </div>
+        )}
+
+        {/* Modal de confirmación para eliminar proyecto */}
         {proyectoIdAEliminar && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full">

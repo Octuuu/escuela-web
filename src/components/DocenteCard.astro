@@ -4,13 +4,13 @@ const { name, subject, image, alt, perfil } = Astro.props;
 ---
 
 <div class="bg-white/5 border border-white/10 backdrop-blur-sm text-white shadow-xl rounded-xl overflow-hidden w-full max-w-sm mx-auto transition-all duration-300">
-  <div class="relative overflow-hidden group">
+  <div class="relative overflow-hidden group flex justify-center items-center">
     <Image
       src={image}
       alt={alt}
-      width="400"
+      width="190"
       height="192"
-      class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-118"
+      class="w-46 h-48 object-cover transition-transform duration-500 group-hover:scale-118"
       loading="eager"
     />
 
@@ -22,7 +22,7 @@ const { name, subject, image, alt, perfil } = Astro.props;
 
     <a
       href={perfil}
-      class="inline-block text-sm font-semibold text-white  px-5 py-2 rounded-full hover:bg-white hover:text-black transition-colors duration-300"
+      class="inline-block text-sm font-semibold text-white px-5 py-2 rounded-full hover:bg-[#ffb84d62] transition-colors duration-300"
     >
       Ver Perfil
     </a>

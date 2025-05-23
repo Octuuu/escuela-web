@@ -106,6 +106,7 @@ export default function ProyectoForm() {
   };
 
   return (
+    
     <form
       onSubmit={handleSubmit}
       className="bg-white/90 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-md shadow-2xl rounded-3xl p-8 mb-16 space-y-6 max-w-2xl mx-auto text-black dark:text-white transition-all"
