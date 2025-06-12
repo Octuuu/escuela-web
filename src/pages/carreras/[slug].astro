@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { carreras } from "../../data/carreras.js";
+import { Image } from 'astro:assets';
+import MallaCarreras from "../../components/MallaCarreras.astro";
+
+export async function getStaticPaths() {
+  return carreras.map((carrera) => ({
+    params: { slug: carrera.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const carrera = carreras.find((d) => d.slug === slug);
+
+if (!carrera) {
+  throw new Error(`Carrera con slug "${slug}" no encontrado`);
+}
+---
+<Layout>
+  <section class="w-full mt-10">
+    <h2 class="text-2xl sm:text-4xl font-bold mb-6 text-center">Malla Curricular de {carrera.name}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+      {carrera.mallaCurricular.map((semestre, index) => (
+        <div class="bg-white/5 border border-white/10 shadow-lg rounded-2xl p-6 transition duration-300 hover:scale-[1.01] dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mb-3">{semestre.semestre}</h3>
+          <ul class="list-disc list-inside text-left text-sm sm:text-base space-y-1">
+            {semestre.materias.map((materia, i) => (
+              <li class="text-gray-700 dark:text-gray-300">{materia}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<script>
+
+    /*
+    export const carreras = [
+    {
+        name: "Profesorado en Educación Escolar Básica",
+        duracion: "6 semestres",
+        modalidad: "presencial",
+        titulo: "Profesor/a de Educación Escolar Básica 1.º y 2.º ciclo",
+        image: "/assets/usuario.png",
+        alt: "Foto de Lic. Fulanito",
+        mallaCurricular: "",
+        slug: "profesorado-en-educación-escolar-basica",
+        
+    }
+]
+    */
+</script>
