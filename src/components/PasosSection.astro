@@ -2,77 +2,39 @@
 import { Image } from 'astro:assets';
 ---
 
-<section class="min-h-[100vh] flex flex-col lg:flex-row items-start text-center lg:text-left gap-12 lg:gap-20 px-4 sm:px-6 py-16 bg-[rgb(1,1,40)] text-white overflow-hidden" data-aos="fade-up">
+<section class="min-h-[90vh] flex flex-col lg:flex-row items-start  lg:text-left gap-12 lg:gap-20 bg-[rgb(1,1,40)] text-white relative">
 
-  <div class="w-full lg:w-1/3 flex justify-center flex-col items-center lg:items-start gap-6" data-aos="fade-right">
-    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-[#FFB84D]">
-      Nuestros<br/>Pasos
+  <div class="w-full lg:w-1/3 flex justify-center flex-col items-center lg:items-start gap-6 lg:pr-12" data-aos="zoom-in-down">
+    <h1 class="text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-[#FFB84D]">
+      Nuestros Pasos
     </h1>
-    <div class="w-24 h-1 bg-[#FFB84D] rounded-full"></div>
-    
-    <!--
-    <div class="mt-10 w-full flex justify-center lg:justify-start">
-      <div class="bg-gradient-to-tr from-yellow-400/20 via-yellow-200/10 to-white/10 backdrop-blur-lg rounded-2xl p-6 w-64 h-64 shadow-xl border border-yellow-300/10 relative overflow-hidden animate-fade-in">
-        
-        <svg class="absolute right-4 bottom-4 w-20 h-20 text-[#FFB84D]/20" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 9.75L5.18 9 12 5.25 18.82 9 12 12.75zm-6 2.68v2.07c0 1.45 2.69 2.5 6 2.5s6-1.05 6-2.5v-2.07l-6 3.27-6-3.27z"/>
-        </svg>
-    
-        <h3 class="text-xl font-semibold text-[#FFB84D] mb-2">Lorem ipsum dolo</h3>
-        <p class="text-sm text-gray-200 leading-relaxed">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam rem ex tempora quidem tempore aliquam 
-        </p>
-      </div>
-    </div>
-    -->
+    <div class="w-20 h-1 bg-[#FFB84D] rounded-full"></div>
   </div>
 
-  <div class="w-full lg:w-2/3 flex flex-col gap-12">
-  
-    <div class="flex flex-col gap-6 items-center lg:items-start max-w-4xl" data-aos="fade-up" data-aos-delay="200">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white">Reseña Histórica – Instituto de Formación Docente de San Ignacio</h2>
-      <p class="text-base sm:text-lg font-light text-gray-300 leading-relaxed text-justify break-words bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-lg">
-        El Instituto de Formación Docente de San Ignacio, Misiones, surge como respuesta al cierre
+  <div class="hidden lg:block absolute top-1 bottom-25 left-1/3 border-r border-[#FFB84D]/40"></div>
+
+  <div class="w-full lg:w-2/3 flex flex-col gap-12 pl-8 lg:pl-12" data-aos="zoom-in">
+    <div class="flex flex-col gap-4 items-center lg:items-start max-w-4xl">
+      <h2 class="text-xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+        Reseña Histórica – Instituto de Formación Docente de San Ignacio Guazú
+      </h2>
+      <p class="text-base sm:text-lg font-normal text-gray-300 leading-relaxed text-left lg:text-justify lg:tracking-normal tracking-normal max-w-prose">
+        El Instituto de Formación Docente de San Ignacio Guazú, Misiones, surge como respuesta al cierre
         de la antigua Escuela Normal N.º 13 en 1972. Gracias a gestiones de autoridades locales,
         comunidades y la Asociación de Educadores Ignacianos, se logró su creación mediante la
         Resolución N.º 1068 del MEC, el 24 de mayo de 1993. Las clases iniciaron en junio del
         mismo año con 45 alumnos y 12 docentes ad honorem, en locales provisorios.
-        <br>
-        <br>
+        <br /><br />
         Desde entonces el instituto ha crecido gracias al compromiso conjunto de docentes,
         estudiantes y la comunidad. Actualmente, ofrece formación docente en Educación Inicial,
         Escolar Básica, Profesorados del Nivel Medio, así como especializaciones y cursos de
         actualización continua.
       </p>
     </div>
-    <!-- 
-    <div class="relative border-l-4 border-[#FFB84D] pl-6 space-y-12 mt-8" data-aos="fade-up" data-aos-delay="300">
-      <div class="relative">
-        <span class="absolute -left-[1.25rem] top-1 w-4 h-4 bg-[#FFB84D] rounded-full"></span>
-        <h3 class="text-xl font-semibold text-white">2025 - Fundación de la institución</h3>
-        <p class="text-gray-300 text-sm mt-1">orem ipsum, dolor sit amet consectetur adipisicing elit</p>
-      </div>
-
-      <div class="relative">
-        <span class="absolute -left-[1.25rem] top-1 w-4 h-4 bg-[#FFB84D] rounded-full"></span>
-        <h3 class="text-xl font-semibold text-white">2025 - Fundación de la institución</h3>
-        <p class="text-gray-300 text-sm mt-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-      </div>
-
-      <div class="relative">
-        <span class="absolute -left-[1.25rem] top-1 w-4 h-4 bg-[#FFB84D] rounded-full"></span>
-        <h3 class="text-xl font-semibold text-white">2025 - Fundación de la institución</h3>
-        <p class="text-gray-300 text-sm mt-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-      </div>
-
-      <div class="relative">
-        <span class="absolute -left-[1.25rem] top-1 w-4 h-4 bg-[#FFB84D] rounded-full"></span>
-        <h3 class="text-xl font-semibold text-white">2025 - Fundación de la institución</h3>
-        <p class="text-gray-300 text-sm mt-1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. </p>
-      </div>
-    </div>
-     -->
   </div>
+
 </section>
+
 
 <style>
 @keyframes fade-in {

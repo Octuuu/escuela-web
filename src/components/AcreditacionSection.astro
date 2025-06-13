@@ -2,41 +2,47 @@
 import { Image } from 'astro:assets';
 ---
 
-<section class= "min-h-[100vh] flex flex-col lg:flex-row items-center gap-12 px-4 sm:px-6 py-16 bg-[rgb(1,1,40)] text-white overflow-hidden" data-aos="fade-left">
+<section class="min-h-[80vh] w-full flex flex-col lg:flex-row items-center gap-12 px-4 sm:px-6 py-16 bg-[rgb(1,1,40)] text-white relative" >
 
-  <div class="flex-1 w-full max-w-full space-y-12 px-2 sm:px-8 lg:px-12">
-    <div>
-      <h1 class="text-3xl sm:text-5xl font-bold text-[#FFB84D] mb-4" data-aos="fade-right">
+  <div class="flex-1 w-full space-y-12">
+    <div data-aos="fade-right">
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-[#FFB84D] mb-4" >
         Acreditación
-      </h1>
-      <p class="text-base sm:text-lg text-gray-300 font-light leading-relaxed text-justify" data-aos="fade-up">
+      </h2>
+      <p class="text-base sm:text-lg text-gray-300 font-normal leading-normal tracking-normal text-left lg:text-justify" >
         El Instituto de Formación Docente de San Ignacio Misiones cuenta con la acreditación otorgada por la Agencia Nacional de Evaluación y Acreditación de la Educación Superior (ANEAES), lo que garantiza la calidad académica y el cumplimiento de los estándares establecidos a nivel nacional.
       </p>
     </div>
 
-    <div>
-      <h1 class="text-3xl sm:text-5xl font-bold text-[#FFB84D] mb-4" data-aos="fade-left">
+    <div data-aos="fade-right">
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-[#FFB84D] mb-4">
         Equipamiento
-      </h1>
-      <p class="text-base sm:text-lg text-gray-300 font-light leading-relaxed text-justify" data-aos="fade-up">
-        La institución dispone de una infraestructura adecuada para el desarrollo de actividades académicas, incluyendo aulas equipadas, salas de informática, biblioteca, espacios para talleres, salón auditorio y recursos tecnológicos actualizados que favorecen un ambiente de aprendizaje dinámico e inclusivo. Estos recursos permiten ofrecer una formación docente sólida, comprometida con la excelencia educativa y el desarrollo profesional de los futuros maestros.
+      </h2>
+      <p class="text-base sm:text-lg text-gray-300 font-normal leading-normal tracking-normal text-left lg:text-justify" >
+        La institución dispone de una infraestructura adecuada para el desarrollo de actividades académicas, incluyendo aulas equipadas, salas de informática, biblioteca, espacios para talleres, salón auditorio y recursos tecnológicos actualizados que favorecen un ambiente de aprendizaje dinámico e inclusivo.
       </p>
     </div>
   </div>
 
-  <div class="flex-1 flex flex-col items-center lg:items-end text-center lg:text-right max-w-full px-2 sm:px-8 lg:px-12" data-aos="fade-right">
-    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 tracking-tight uppercase" data-aos="zoom-in">
+
+  <div class="hidden lg:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 border-l border-[#FFB84D]/40 pointer-events-none z-0"></div>
+
+  <div class="flex-1 flex flex-col items-center lg:items-end text-center lg:text-right w-full relative z-10" >
+    <h1 class="text-4xl lg:text-7xl sm:text-6xl font-extrabold text-white tracking-tight uppercase" data-aos="zoom-in">
       Nuestros
     </h1>
 
-    <div class="overflow-hidden w-full">
-      <div class="flex flex-col sm:flex-row items-center gap-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl transition duration-300 hover:scale-[1.01]">
-        <Image height={128} width={128} class="w-24 sm:w-32 md:w-36 h-auto object-contain" src="/assets/copa.png" alt="Copa" />
-        <div class="text-center sm:text-left lg:text-right">
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#FFB84D]">Grandes</h2>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#FFB84D]">Logros</h2>
+    <div class="w-full max-w-sm flex flex-col items-center lg:items-end">
+      <div class="flex items-center ">
+
+        <Image height={128} width={128} class="w-24 sm:w-32 md:w-36 h-auto object-contain" src="/assets/copa.png" alt="Copa" data-aos="zoom-in-up"/>
+
+        <div class="text-right">
+          <h2 class="text-3xl sm:text-4xl lg:text-7xl font-extrabold text-[#FFB84D] leading-tight" data-aos="zoom-in">Grandes</h2>
+          <h2 class="text-3xl sm:text-4xl lg:text-7xl font-extrabold text-[#FFB84D] leading-tight" data-aos="zoom-in">Logros</h2>
         </div>
       </div>
     </div>
   </div>
+
 </section>

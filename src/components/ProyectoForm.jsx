@@ -4,9 +4,9 @@ import { supabase } from "../lib/supabaseClient";
 function sanitizeFileName(name) {
   return name
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // eliminar tildes y acentos
-    .replace(/\s+/g, "_")            // espacios por guion bajo
-    .replace(/[^a-zA-Z0-9._-]/g, "") // caracteres inválidos
+    .replace(/[\u0300-\u036f]/g, "") 
+    .replace(/\s+/g, "_")           
+    .replace(/[^a-zA-Z0-9._-]/g, "") 
     .toLowerCase();
 }
 
@@ -30,11 +30,10 @@ export default function ProyectoForm() {
     }
 
     try {
-      // Sanitizar nombres de archivo
+  
       const sanitizedImageName = sanitizeFileName(imageFile.name);
       const imagePath = `images/${Date.now()}_${sanitizedImageName}`;
 
-      // Subir imagen
       const { data: imageData, error: imageError } = await supabase.storage
         .from("proyectos")
         .upload(imagePath, imageFile, { upsert: false });
@@ -46,7 +45,6 @@ export default function ProyectoForm() {
       const sanitizedPdfName = sanitizeFileName(pdfFile.name);
       const pdfPath = `pdfs/${Date.now()}_${sanitizedPdfName}`;
 
-      // Subir PDF
       const { data: pdfData, error: pdfError } = await supabase.storage
         .from("proyectos")
         .upload(pdfPath, pdfFile, { upsert: false });
@@ -55,7 +53,6 @@ export default function ProyectoForm() {
         throw pdfError;
       }
 
-      // Obtener URLs públicas correctamente
       const { data: imageUrlData, error: imageUrlError } = supabase.storage
         .from("proyectos")
         .getPublicUrl(imagePath);
@@ -78,7 +75,6 @@ export default function ProyectoForm() {
         throw new Error("No se pudo obtener la URL pública para uno o ambos archivos. Verifica la configuración del bucket en Supabase.");
       }
 
-      // Insertar datos en tabla proyectos
       const { data, error } = await supabase
         .from("proyectos")
         .insert([{ title, description, image_url: imageUrl, pdf_url: pdfUrl }]);
@@ -90,7 +86,6 @@ export default function ProyectoForm() {
       setMensaje("Proyecto subido correctamente!");
       setMensajeClass("text-green-600 dark:text-green-400");
 
-      // Limpiar formulario
       setTitle("");
       setDescription("");
       setImageFile(null);
@@ -109,11 +104,11 @@ export default function ProyectoForm() {
     
     <form
       onSubmit={handleSubmit}
-      className="bg-white/90 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-md shadow-2xl rounded-3xl p-8 mb-16 space-y-6 max-w-2xl mx-auto text-black dark:text-white transition-all"
+      className=" backdrop-blur-md shadow-2xl rounded-3xl p-8 mb-16 space-y-6 max-w-2xl mx-auto text-black dark:text-white transition-all mt-10"
       encType="multipart/form-data"
       autoComplete="on"
     >
-      <h2 className="text-3xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">
+      <h2 className="text-2xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">
         Subir un Proyecto
       </h2>
 
@@ -129,7 +124,7 @@ export default function ProyectoForm() {
           required
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black dark:text-white placeholder-gray-500 dark:placeholder-white/60"
+          className="w-full bg-transparent border-0 border-b-2 border-gray-300 dark:border-white/60 rounded-none px-0 py-2 focus:outline-none focus:ring-0 focus:border-blue-500 text-black dark:text-white placeholder-gray-500 dark:placeholder-white/60"
         />
       </div>
 
@@ -145,7 +140,7 @@ export default function ProyectoForm() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows="4"
-          className="w-full bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black dark:text-white placeholder-gray-500 dark:placeholder-white/60"
+          className="w-full bg-transparent border-0 border-b-2 border-gray-300 dark:border-white/60 rounded-none px-0 py-2 focus:outline-none focus:ring-0 focus:border-blue-500 text-black dark:text-white placeholder-gray-500 dark:placeholder-white/60"
         ></textarea>
       </div>
 
@@ -155,7 +150,7 @@ export default function ProyectoForm() {
         </label>
         <label
           htmlFor="image"
-          className="block w-full px-4 py-3 text-center text-sm font-medium text-blue-700 bg-blue-100 border border-blue-300 rounded-lg cursor-pointer hover:bg-blue-200 dark:bg-blue-900 dark:border-blue-700 dark:text-white dark:hover:bg-blue-800 transition"
+          className="block w-full py-1 text-center text-sm font-medium text-blue-700 bg-blue-100 border border-blue-300 rounded-lg cursor-pointer hover:bg-blue-200 dark:bg-blue-900 dark:border-blue-700 dark:text-white dark:hover:bg-blue-800 transition"
         >
           Seleccionar imagen
         </label>
@@ -179,7 +174,7 @@ export default function ProyectoForm() {
         </label>
         <label
           htmlFor="pdf"
-          className="block w-full px-4 py-3 text-center text-sm font-medium text-indigo-700 bg-indigo-100 border border-indigo-300 rounded-lg cursor-pointer hover:bg-indigo-200 dark:bg-indigo-900 dark:border-indigo-700 dark:text-white dark:hover:bg-indigo-800 transition"
+          className="block w-full px-4 py-2 text-center text-sm font-medium text-indigo-700 bg-indigo-100 border border-indigo-300 rounded-lg cursor-pointer hover:bg-indigo-200 dark:bg-indigo-900 dark:border-indigo-700 dark:text-white dark:hover:bg-indigo-800 transition"
         >
           Seleccionar PDF
         </label>
@@ -199,7 +194,7 @@ export default function ProyectoForm() {
 
       <button
         type="submit"
-        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-transform"
+        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-2 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-transform"
       >
         Subir Proyecto
       </button>

@@ -6,25 +6,25 @@ import 'aos/dist/aos.css';
 import Proximamente from "../components/Proximamente.astro";
 import MallaCarreras from "../components/MallaCarreras.astro";
 import { carreras } from "../data/carreras";
+import AOSInit from "../components/AOSInit";
 ---
 
 <Layout>
 
-  <div class="text-black  items-center flex flex-col px-4 relative">
+  <div class="text-black items-center flex flex-col justify-center px-4 relative" data-aos="zoom-in">
     
     <div>
-      <h1 class="text-5xl font-extrabold mb-6 text-[#FFB84D] text-center  relative z-10 animate-fade-in" >
+      <h1 class="text-2xl lg:text-5xl lg:text-start font-extrabold mb-4 text-[#FFB84D] text-center relative z-10 " >
       OFERTAS EDUCATIVAS
       </h1>
-      <div class="w-32 h-2 mt-4 bg-[#FFB84D] rounded-full animate-fade-in"></div>
+      <div class="w-15 h-1 lg:w-32 lg:h-2 mt-4 bg-[#FFB84D] rounded-full "></div>
     </div>
-
       
-    <p class="text-xl mt-10 text-gray-300 text-center mb-8 max-w-3xl mx-auto font-light animate-fade-in">
+    <p class="text-base mt-2 lg:mt-5 text-gray-300 text-center mb-8 max-w-3xl mx-auto font-medium ">
       Formamos a futuros educadores con vocación, compromiso y excelencia académica. Nuestras carreras están orientadas al desarrollo integral de profesionales capaces de transformar la educación desde el aula.
     </p>
 
-    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 items-center md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-7 lg:w-full animate-fade-in">
+    <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 items-center md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-7 lg:w-full ">
       {carreras.map((carrera) => (
         <MallaCarreras
           name={carrera.name}
@@ -36,82 +36,11 @@ import { carreras } from "../data/carreras";
       ))}
     </div>
     <script>
-      /*
-       name: "Profesorado en Educación Escolar Básica",
-        duracion: "6 semestres",
-        modalidad: "presencial",
-        titulo: "Profesor/a de Educación Escolar Básica 1.º y 2.º ciclo",
-        image: "/assets/usuario.png",
-        alt: "Foto de Lic. Fulanito",
-        mallaCurricular: "",
-        slug: "Profesorado en Educación Escolar Básica",
-         */
+      
     </script>
 
-    <!--
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-      <div class="bg-gradient-to-r bg-white/5
-      border-white/10 text-white p-8 rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
-        <h3 class="text-[#FFB84D] text-2xl font-semibold mb-4 text-shadow-md">Lorem ipsum dolor </h3>
-        <p class=" font-light opacity-80 animate-fade-in" >
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur, inventore! Nam earum voluptate fuga vel, commodi odio dignissimos nihil corporis, libero ipsa assumenda aperiam, ex maiores! Tenetur eveniet dolores temporibus?
-        </p>
-      </div>
-
-      <div class="bg-gradient-to-r bg-white/5
-      border-white/10 text-white p-8 rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
-        <h3 class="text-2xl font-semibold mb-4 text-shadow-md text-[#FFB84D]">Lorem ipsum dolor </h3>
-        <p class="font-light opacity-80 animate-fade-in" >
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur, inventore! Nam earum voluptate fuga vel, commodi odio dignissimos nihil corporis, libero ipsa assumenda aperiam, ex maiores! Tenetur eveniet dolores temporibus?
-        </p>
-      </div>
-
-      <div class="bg-gradient-to-r bg-white/5
-      border-white/10 text-white p-8 rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500">
-        <h3 class="text-[#FFB84D] text-2xl font-semibold mb-4 text-shadow-md">Lorem ipsum dolor </h3>
-        <p class="font-light opacity-80 animate-fade-in" >
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur, inventore! Nam earum voluptate fuga vel, commodi odio dignissimos nihil corporis, libero ipsa assumenda aperiam, ex maiores! Tenetur eveniet dolores temporibus?
-        </p>
-      </div>
-    </div>
-
-    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center" >
-      <CursoCard 
-        title="Profesorado en Educación Básica"
-        image="/assets/carrera.webp"
-        alt="Educación Básica"
-      />
-      <CursoCard 
-        title="Profesorado en Educación Inicial"
-        image="/assets/carrera.webp"
-        alt="Educación Inicial"
-      />
-      <CursoCard 
-        title="Habilitación Pedagógica"
-        image="/assets/carrera.webp"
-        alt="Habilitación Pedagógica"
-      />
-      <CursoCard 
-        title="Formación Específica en Lengua y Literatura Castellana"
-        image="/assets/carrera.webp"
-        alt="Lengua y Literatura"
-      />
-      <CursoCard 
-        title="Profesorado para 3° Ciclo Matemática"
-        image="/assets/carrera.webp"
-        alt="Profesorado Matemática"
-      />
-    </div>
-
-    <div class="mt-12 text-center">
-      <p class="text-lg text-gray-300 mb-6">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur, inventore! Nam earum voluptate fuga vel, commodi odio dignissimos nihil corporis, libero ipsa assumenda aperiam, ex maiores! Tenetur eveniet dolores temporibus?
-      </p>
-
-    </div>
-    -->
-
   </div>
+  <AOSInit client:load />
 
 </Layout>
 

@@ -4,30 +4,12 @@ import PasosSection from "../components/PasosSection.astro";
 import AcreditacionSection from "../components/AcreditacionSection.astro";
 import InscripcionSection from "../components/InscripcionSection.astro";
 import Footer from "../components/footer.astro";
-
+import AOSInit from "../components/AOSInit";
 ---
 
 <Layout>
   <PasosSection />
   <AcreditacionSection />
   <InscripcionSection />
-  
-  
+  <AOSInit client:load />
 </Layout>
-
-<script>
-  import AOS from 'aos';
-  import 'aos/dist/aos.css';
-
-  AOS.init({
-    once: false, 
-  });
-
-  window.addEventListener("scroll", () => {
-    AOS.refresh();
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    AOS.refresh(); 
-  });
-</script>

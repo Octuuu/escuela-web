@@ -89,5 +89,6 @@ export const carreras = [
         ]
       }
     ]
-  }
+  },
+  
 ];

@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import { ViewTransitions } from 'astro:transitions';
 import { Image } from 'astro:assets';
-import logo from '../assets/logoifd2.webp';
+import logo from '../assets/ifd.webp';
 
 ---
 
@@ -26,18 +26,19 @@ import logo from '../assets/logoifd2.webp';
     rel="stylesheet"
   />
 
-  <link rel="icon" type="image/webp" href="/favicon.webp" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
 
   <ViewTransitions />
 </head>
 
-  <body class="font-sans bg-white text-gray-900">
+<body class="font-sans bg-white text-gray-900 overflow-x-hidden overflow-y-auto h-screen">
+
     <header class="sticky top-0 z-50 bg-[rgba(1,1,40,0.7)] backdrop-blur-md border-b border-white/20 shadow-md navbar-animate">
       <nav class="max-w-7xl mx-auto px-4 md:px-6 md:py-4 flex items-center justify-between">
     
         <div>
           <a href="/">
-            <Image class="w-14" src={logo} width={400} height={192} alt="Logo Instituto de Formación Docente San Ignacio Guazú" loading="eager" />
+            <Image class="w-14" src='/assets/ifd.webp' width={400} height={192} alt="Logo Instituto de Formación Docente San Ignacio Guazú" loading="eager" />
           </a>
         </div>
 
@@ -85,7 +86,7 @@ import logo from '../assets/logoifd2.webp';
           </li>
         </ul>
 
-        <!-- Botón de menú hamburguesa para móviles -->
+        <!-- menú hamburguesa para móviles -->
         <div class="md:hidden">
           <button id="menu-toggle" class="text-white focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,7 +96,7 @@ import logo from '../assets/logoifd2.webp';
         </div>
       </nav>
 
-      <!-- Menú desplegable para móviles -->
+      <!-- menú desplegable para móviles -->
       <div id="mobile-menu" class="md:hidden fixed top-16 left-0 w-full bg-[rgba(1,1,40,0.9)] backdrop-blur-md text-white z-40 hidden">
         <ul class="flex flex-col items-center space-y-4 py-4 text-lg font-semibold">
           <li>

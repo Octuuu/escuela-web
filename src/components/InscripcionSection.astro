@@ -2,54 +2,52 @@
 import { Image } from 'astro:assets';
 ---
 
-<section class="min-h-screen flex flex-col lg:flex-row items-center gap-12 px-6 sm:px-10 bg-[rgb(1,1,40)] text-white overflow-x-hidden">
+<section class="min-h-screen flex flex-col lg:flex-row items-start gap-12 sm:px-10 py-16 bg-[rgb(1,1,40)] text-white overflow-x-hidden">
   
-  <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-    <div class="flex items-center gap-4 mb-10" data-aos="zoom-in">
-      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-wider uppercase">¿Cómo</h1>
-      <h1 class="text-3xl sm:text-5xl font-extrabold text-[#FFB84D] uppercase" data-aos="fade-up">Inscribirse?</h1>
+  <div class="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left relative">
+   
+    <div class="flex items-center gap-3 mb-10" data-aos="zoom-in">
+      <h1 class="text-2xl sm:text-5xl font-extrabold tracking-wide uppercase">¿Cómo</h1>
+      <h1 class="text-2xl sm:text-5xl font-extrabold text-[#FFB84D] uppercase tracking-wide" data-aos="fade-up">Inscribirse?</h1>
     </div>
+    <div class="text-start" data-aos="zoom-in">
+      <h2 class="text-1xl sm:text-3xl font-semibold text-white mb-6 tracking-wide border-b border-[#FFB84D]/50 pb-2 w-full max-w-xl">
+            Documentos Requeridos para la Inscripción
+          </h2>
 
-    <div class="bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl p-7 rounded-3xl max-w-xl w-full text-left transition-all duration-300 hover:scale-[1.015]">
-      <h2 class="text-1xl sm:text-4xl font-bold text-white mb-6 pb-3 border-b border-white/10 tracking-wide">
-        Documentos Requeridos para la Inscripción
-
-      </h2>
-      
-      <ul class="space-y-5 text-lg text-gray-200 font-light leading-relaxed pl-2">
-        <li class="flex items-center gap-3">
-          <span class="w-2 h-2 bg-[#FFB84D] rounded-full"></span> Título de Bachiller: Fotocopia autenticada del título de Bachiller, visado por el Ministerio de Educación y Ciencias (MEC). 
-
+      <ul class="space-y-6 text-base sm:text-lg leading-relaxed max-w-xl w-full">
+        <li class="flex gap-1 items-start">
+          <span class="text-[#FFB84D] text-xl leading-6 mt-1">•</span>
+          <p>Título de Bachiller: Fotocopia autenticada del título de Bachiller, visado por el Ministerio de Educación y Ciencias (MEC).</p>
         </li>
-        <li class="flex items-center gap-3">
-          <span class="w-2 h-2 bg-[#FFB84D] rounded-full"></span> Cédula de Identidad: Fotocopia autenticada de la cédula de identidad vigente. 
-
+        <li class="flex gap-1 items-start">
+          <span class="text-[#FFB84D] text-xl leading-6 mt-1">•</span>
+          <p>Cédula de Identidad: Fotocopia autenticada de la cédula de identidad vigente.</p>
         </li>
-        <li class="flex items-center gap-3">
-          <span class="w-2 h-2 bg-[#FFB84D] rounded-full"></span> Certificado de Nacimiento: Original del certificado de nacimiento.
+        <li class="flex items-start">
+          <span class="text-[#FFB84D] text-xl leading-6 mt-1">•</span>
+          <p>Certificado de Nacimiento: Original del certificado de nacimiento.</p>
         </li>
-        <li class="flex items-center gap-3">
-          <span class="w-2 h-2 bg-[#FFB84D] rounded-full"></span> Fotografías: Dos fotos tipo carné (3x3 cm).
+        <li class="flex gap-1 items-start">
+          <span class="text-[#FFB84D] text-xl leading-6 mt-1">•</span>
+          <p>Fotografías: Dos fotos tipo carné (3x3 cm).</p>
         </li>
       </ul>
     </div>
+    
   </div>
 
-  <div class="flex-1 w-full space-y-8" data-aos="fade-left">
-    <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4" data-aos="fade-right">
-      ACERCATE A
-    </h1>
+  <div class="flex-1 w-full space-y-8 mt-20" data-aos="fade-left">
+    <h1 class="text-2xl sm:text-5xl font-extrabold text-white" data-aos="fade-right">ACERCATE A</h1>
 
-    <div class="bg-[#FFB84D]/10 border border-[#FFB84D]/20 p-6 rounded-2xl backdrop-blur-md shadow-lg">
-      <p class="text-[#FFE7B3] text-lg sm:text-xl font-light text-center">
-        📍 Dirección IFD<br />
-        <span class="block mt-1 font-medium text-white">
-          Instituto de Formación Docente, San Ignacio Misiones
-        </span>
-      </p>
-    </div>
+    <p class="text-[#FFE7B3] text-base sm:text-xl font-light text-center sm:text-left">
+      📍 Dirección IFD<br />
+      <span class="block mt-1 font-medium text-white">
+        Instituto de Formación Docente, San Ignacio Misiones
+      </span>
+    </p>
 
-    <div class="w-full max-w-full h-[300px] rounded-2xl overflow-hidden shadow-lg border border-white/10">
+    <div class="w-full h-[300px] rounded-xl overflow-hidden shadow-md border border-white/10">
       <iframe
         title="Mapa del Instituto de Formación Docente en San Ignacio"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d357.6231717000819!2d-57.030089499999996!3d-26.889768799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945a2415b23fffff%3A0xf9b0a3187a02ebf7!2sInstituto%20de%20Formaci%C3%B3n%20Docente!5e0!3m2!1ses-419!2spy!4v1712859903682!5m2!1ses-419!2spy"

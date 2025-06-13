@@ -1,9 +1,9 @@
 export const docentes = [
   {
-    name: "Isabelino Victor Martínez Galeano",
+    name: "Isabelino Victor Martínez Galiano",
     subject: "Ciencias Sociales, Naturales, Exactas, Artística y Práctica Profesional",
     image: "/assets/perfil.png",
-    alt: "Foto de Isabelino Victor Martínez Galeano",
+    alt: "Foto de Isabelino Victor Martínez Galiano",
     descripcion: `Docente en el Instituto de Formación Docente San Ignacio desde hace más de 20 años. Profesor de educación popular en Fe y Alegría, catedrático en la educación media, Vice Director de EEB, ocupó cargos de alta gerencia en el MEC Central. Catedrático en Formación Docente, miembro del equipo de autoevaluación del IFD. Tiene a su cargo las materias: Ciencias Sociales, Ciencias Naturales, Ciencias Exactas, Artística y Práctica Profesional. Formación académica: Profesor de EEB 1° y 2° ciclos, Lic. en Ciencias de la Educación, Especialista en Docencia Superior Universitaria, Magíster en Educación con énfasis en Gestión de la Educación Superior, Doctor en Educación por UNISINOS (Brasil). Ponente en eventos internacionales sobre educación indígena y misiones jesuíticas. Integra: CELAPED, Fundación Tierra sin Mal, Asociación Bonpland y Asociación Flor del Desierto.`,
     slug: "isabelino-martinez",
   },

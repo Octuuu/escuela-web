@@ -42,7 +42,6 @@ export default function Foro() {
       setFormData({ name: '', content: '' });
       setMensaje({ tipo: 'success', texto: 'Comentario enviado' });
 
-      // actualizar comentarios sin recargar
       const { data } = await supabase
         .from('comments')
         .select('*')
@@ -71,16 +70,17 @@ export default function Foro() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white/5 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-xl space-y-4 text-white">
-        <h2 className="text-3xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">Foro de comentarios</h2>
+      <form onSubmit={handleSubmit} className=" backdrop-blur-lg p-6 rounded-2xl shadow-xl space-y-4 text-white">
+        <h2 className="text-2xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">Foro de comentarios</h2>
         <input
           type="text"
           name="name"
           placeholder="Ingrese su nombre (no es obligatorio)"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-white/70"
+          className="w-full bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/70 px-0 py-2 focus:outline-none focus:border-blue-500 focus:ring-0"
         />
+
         <textarea
           name="content"
           placeholder="Escribe tu comentario"
@@ -88,8 +88,9 @@ export default function Foro() {
           rows="4"
           value={formData.content}
           onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-          className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-white/70"
+          className="w-full bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/70 px-0 py-2 focus:outline-none focus:border-blue-500 focus:ring-0"
         />
+
         <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 transition-colors text-white font-medium px-4 py-2 rounded-lg shadow-md">
           Enviar comentario
         </button>

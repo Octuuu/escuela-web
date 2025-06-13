@@ -1,42 +1,43 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from 'astro:assets';
-import logo from '../assets/logoifd2.webp';
+import logo from '/assets/carrera.webp';
 import MisionVision from "../components/MisionVision.astro";
+import AOSInit from "../components/AOSInit";
 ---
 
 <Layout>
-  <section class="min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center px-4 text-center w-full bg-[rgb(1,1,40)] text-white relative overflow-hidden">
-    <div class="relative flex flex-col lg:flex-row items-center gap-10">
-      <div class="flex flex-col items-center lg:items-start">
-        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-extrabold text-white animate-fade-in">
-          FORMACIÓN
-        </h1>
-        <div class="flex z-10 flex-col sm:flex-row items-center gap-4">
-          <Image 
+  <section class="min-h-[80vh] lg:min-h-[calc(100vh-8rem)] flex flex-col items-center justify-center px-4 text-center w-full bg-[rgb(1,1,40)] text-white relative overflow-hidden">
+    <div class="relative flex flex-col-reverse lg:flex-row items-center gap-10">
+      <div class="flex flex-col items-center lg:flex-row lg:items-start mt-30">
+        <Image 
             width={400}      
             height={192} 
-            class="w-32 sm:w-40 md:w-48 lg:w-36 animate-fade-in-left" 
-            src={logo} 
+            class="w-28 sm:w-40 md:w-48 lg:w-36" 
+            src="/assets/ifd.webp" 
             alt="Logo IFD" 
             loading="eager" 
+            data-aos="fade-left"
           />
-          <h1 class="text-5xl sm:text-7xl md:text-7xl lg:text-9xl font-extrabold text-white animate-fade-in-up">
-            DOCENTE
-          </h1>
+
+        <div class="flex w-full z-10 flex-col sm:flex-row lg:flex-col items-start gap-4">
+            <h1 class="text-2xl sm:text-6xl md:text-7xl  lg:text-5xl lg:font-extrabold text-white" data-aos="fade-down">
+              INSTITUTO DE FORMACIÓN DOCENTE
+            </h1>
+            <h1 class="text-3xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold text-white" data-aos="fade-up">
+              SAN IGNACIO GUAZÚ
+            </h1>
         </div>
+
       </div>
     </div>
 
-    <p class="mt-20 text-lg sm:text-xl md:text-xl font-roboto-slab italic font-semibold">
+    <p class="mt-30 lg:mt-40 text-base sm:text-xl md:text-xl font-roboto-slab italic font-semibold" data-aos="fade-right">
       "El objetivo de la educación es crear personas capaces de hacer cosas nuevas, <br class="hidden sm:block" />
       no solamente repetir lo que otras generaciones hacen"
     </p>
   </section>
 
   <MisionVision />
-
-
-  
-  
+  <AOSInit client:load />
 </Layout>
