@@ -4,7 +4,7 @@ export const carreras = [
     duracion: "6 semestres",
     modalidad: "presencial",
     titulo: "Profesor/a de Educación Escolar Básica 1.º y 2.º ciclo",
-    image: "/assets/carrera.webp",
+    image: "/assets/carrera.jpg",
     alt: "Foto de la carrera",
     slug: "profesorado-en-educación-escolar-basica",
     mallaCurricular: [
