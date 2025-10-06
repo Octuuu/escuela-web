@@ -13,7 +13,7 @@ export default function Foro() {
       const { data, error } = await supabase
         .from('comments')
         .select('*')
-        .eq('pageId', 'inicio')
+        .eq('pageid', 'inicio')
         .order('created_at', { ascending: false });
 
       if (error) {
@@ -33,7 +33,7 @@ export default function Foro() {
     const payload = {
       username: formData.name.trim() || 'Anónimo',
       content: formData.content.trim(),
-      pageId: 'inicio',
+      pageid: 'inicio',
     };
 
     const { error } = await supabase.from('comments').insert([payload]);
@@ -45,7 +45,7 @@ export default function Foro() {
       const { data } = await supabase
         .from('comments')
         .select('*')
-        .eq('pageId', 'inicio')
+        .eq('pageid', 'inicio')
         .order('created_at', { ascending: false });
 
       setComentarios(data);
