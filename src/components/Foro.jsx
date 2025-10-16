@@ -1,65 +1,85 @@
 import React, { useEffect, useState } from 'react';
-import CommentCard from './CommentCard.jsx';
-import { supabase } from '../lib/supabaseClient.js'; 
+import { supabase } from '../lib/supabaseClient';
 
 export default function Foro() {
   const [comentarios, setComentarios] = useState([]);
-  const [mostrarTodos, setMostrarTodos] = useState(false);
   const [formData, setFormData] = useState({ name: '', content: '' });
+  const [replyingToId, setReplyingToId] = useState(null);
   const [mensaje, setMensaje] = useState(null);
+  const [mostrarRespuestas, setMostrarRespuestas] = useState({}); // { [id]: true/false }
 
   useEffect(() => {
-    const fetchComentarios = async () => {
-      const { data, error } = await supabase
-        .from('comments')
-        .select('*')
-        .eq('pageid', 'inicio')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error al obtener comentarios:', error);
-        setComentarios([]);
-      } else {
-        setComentarios(data);
-      }
-    };
-
     fetchComentarios();
   }, []);
 
+  const fetchComentarios = async () => {
+    const { data, error } = await supabase
+      .from('comments')
+      .select('*')
+      .eq('pageid', 'inicio')
+      .order('id', { ascending: true }); // orden simple
+
+    if (!error) {
+      // organizar comentarios en principal + respuestas
+      const principales = data.filter(c => c.parent_id === null);
+      const respuestas = data.filter(c => c.parent_id !== null);
+
+      const comentariosConRespuestas = principales.map(c => ({
+        ...c,
+        replies: respuestas.filter(r => r.parent_id === c.id),
+      }));
+
+      setComentarios(comentariosConRespuestas);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.content.trim()) return;
 
     const payload = {
       username: formData.name.trim() || 'Anónimo',
       content: formData.content.trim(),
       pageid: 'inicio',
+      parent_id: replyingToId,
     };
 
     const { error } = await supabase.from('comments').insert([payload]);
 
     if (!error) {
       setFormData({ name: '', content: '' });
+      setReplyingToId(null);
       setMensaje({ tipo: 'success', texto: 'Comentario enviado' });
-
-      const { data } = await supabase
-        .from('comments')
-        .select('*')
-        .eq('pageid', 'inicio')
-        .order('created_at', { ascending: false });
-
-      setComentarios(data);
+      fetchComentarios();
     } else {
       setMensaje({ tipo: 'error', texto: 'Error al enviar comentario' });
     }
 
     setTimeout(() => setMensaje(null), 4000);
   };
+  
+  function linkify(text) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.split(urlRegex).map((part, i) => 
+      urlRegex.test(part) ? (
+        <a
+          key={i}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 underline"
+        >
+          {part}
+        </a>
+      ) : (
+        part
+      )
+    );
+  }
 
-  const comentariosVisibles = mostrarTodos ? comentarios : comentarios.slice(0, 10);
 
   return (
-    <div className="max-w-3xl mx-auto mt-12 px-4">
+    <div className="max-w-3xl mx-auto mt-12 px-4 text-white">
       {mensaje && (
         <div className={`mb-6 px-4 py-3 rounded-lg text-center font-medium ${
           mensaje.tipo === 'success'
@@ -70,52 +90,71 @@ export default function Foro() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className=" backdrop-blur-lg p-6 rounded-2xl shadow-xl space-y-4 text-white">
-        <h2 className="text-2xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">Foro de comentarios</h2>
+      <form onSubmit={handleSubmit} className="backdrop-blur-lg p-6 rounded-2xl shadow-xl space-y-4">
+        <h2 className="text-2xl font-bold text-center mb-6 text-blue-700 dark:text-blue-400">
+          {replyingToId ? 'Respondiendo' : 'Foro de comentarios'}
+        </h2>
+
         <input
           type="text"
-          name="name"
-          placeholder="Ingrese su nombre (no es obligatorio)"
+          placeholder="Nombre (opcional)"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/70 px-0 py-2 focus:outline-none focus:border-blue-500 focus:ring-0"
+          className="w-full bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/70 px-0 py-2 focus:outline-none focus:border-blue-500"
         />
 
         <textarea
-          name="content"
-          placeholder="Escribe tu comentario"
+          placeholder={replyingToId ? 'Escribe tu respuesta...' : 'Escribe tu comentario'}
           required
           rows="4"
           value={formData.content}
           onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-          className="w-full bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/70 px-0 py-2 focus:outline-none focus:border-blue-500 focus:ring-0"
+          className="w-full bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/70 px-0 py-2 focus:outline-none focus:border-blue-500"
         />
 
-        <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 transition-colors text-white font-medium px-4 py-2 rounded-lg shadow-md">
-          Enviar comentario
+        <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg shadow-md">
+          {replyingToId ? 'Responder' : 'Enviar comentario'}
         </button>
       </form>
 
-      <div className="mt-10 space-y-2">
-        {comentarios.length > 0 ? (
-          <>
-            {comentariosVisibles.map((comentario) => (
-              <CommentCard key={comentario.id} comentario={comentario} />
-            ))}
-            {comentarios.length > 10 && (
-              <div className="flex justify-center mt-6">
-                <button
-                  onClick={() => setMostrarTodos(!mostrarTodos)}
-                  className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition shadow"
-                >
-                  {mostrarTodos ? 'Ver menos' : 'Ver más'}
-                </button>
+      <div className="mt-10 space-y-4">
+        {comentarios.length === 0 && <p className="text-center text-white/70">No hay comentarios aún</p>}
+
+        {comentarios.map(c => (
+          <div key={c.id} className="p-4 bg-white/5 rounded-lg shadow-lg">
+            <p className="font-semibold text-blue-500">{c.username}</p>
+            <p className="whitespace-pre-line">{linkify(c.content)}</p>
+
+            {c.replies.length > 0 && (
+              <button
+                className="text-sm font-bold text-blue-400 mt-2 cursor-pointer"
+                onClick={() => setMostrarRespuestas(prev => ({ ...prev, [c.id]: !prev[c.id] }))}
+              >
+                {mostrarRespuestas[c.id] ? 'Ocultar respuestas' : `Ver respuestas (${c.replies.length})`}
+              </button>
+            )}
+
+            {mostrarRespuestas[c.id] && (
+              <div className="mt-2 pl-6 border-l-2 border-white/30 space-y-2">
+                {c.replies.map(r => (
+                  <div key={r.id} className="p-2  rounded">
+                    <p className="font-semibold text-blue-400">{r.username}</p>
+                    <p className="whitespace-pre-line">{linkify(r.content)}</p>
+                  </div>
+                ))}
               </div>
             )}
-          </>
-        ) : (
-          <p className="text-center text-white/70">No hay comentarios aún</p>
-        )}
+
+            {!replyingToId && (
+              <button
+                onClick={() => setReplyingToId(c.id)}
+                className="text-sm text-blue-500 mt-4 ml-5 font-bold cursor-pointer"
+              >
+                Responder
+              </button>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
