@@ -6,15 +6,16 @@ import { carreras } from "../data/carreras.js";
   <div class="relative">
     <div id="mobileCarousel" class="overflow-hidden rounded-3xl">
       <div id="mobileCarouselTrack" class="flex transition-transform duration-500 ease-out">
-      
+   
         {carreras.map((carrera, index) => (
-          <div class="flex-shrink-0 w-full px-4 mobile-slide" data-index={index}>
+          <div class="flex-shrink-0 w-full mobile-slide" data-index={index}>
             <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-600/30 h-[437px] flex flex-col mx-auto w-[calc(100vw-2rem)]">
-              <div class="relative flex-1 overflow-hidden">
+              <div class="relative flex-1 overflow-hidden" style="height: 60%;">
                 <img 
                   src={carrera.image} 
                   alt={carrera.alt}
                   class="w-full h-full object-cover"
+                  style="object-fit: cover; object-position: center;"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                 <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -26,7 +27,7 @@ import { carreras } from "../data/carreras.js";
                       {carrera.modalidad}
                     </span>
                   </div>
-                  <h3 class="text-white font-bold text-xl leading-tight mb-1 min-h-[3.5rem] flex items-center">
+                  <h3 class="text-white font-bold text-[17px] leading-tight mb-1 min-h-[3.5rem] flex items-center">
                     {carrera.name.split(' ').length > 3 ? (
                       <>
                         <span class="block w-full">
@@ -40,61 +41,20 @@ import { carreras } from "../data/carreras.js";
                     )}
                   </h3>
                   <p class="text-gray-300 text-sm font-medium line-clamp-2 min-h-[2.5rem] mb-4">
-                    {carrera.titulo}
+                    {carrera.titulo.split(' ').length > 4 ? (
+                      <>
+                        <span class="block w-full">
+                          {carrera.titulo.split(' ').slice(0, 4).join(' ')}
+                          <br />
+                          {carrera.titulo.split(' ').slice(4).join(' ')}
+                        </span>
+                      </>
+                    ) : (
+                      carrera.titulo
+                    )}
                   </p>
                   
-              
-                  <div class="mt-4 ml-16">
-                    <a 
-                      href={`/carreras/${carrera.slug}`}
-                      class="bg-white/15 hover:bg-white/25 text-white font-bold text-center py-2 px-2 rounded-xl transition-all duration-300 active:scale-95 backdrop-blur-md border border-white/20 shadow-lg"
-                    >
-                      Explorar Carrera
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      
-        {carreras.map((carrera, index) => (
-          <div class="flex-shrink-0 w-full px-4 mobile-slide" data-index={index}>
-            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-600/30 h-[437px] flex flex-col mx-auto w-[calc(100vw-2rem)]">
-              <div class="relative flex-1 overflow-hidden">
-                <img 
-                  src={carrera.image} 
-                  alt={carrera.alt}
-                  class="w-full h-full object-cover"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-4">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
-                      {carrera.duracion}
-                    </span>
-                    <span class="bg-white/20 text-white text-xs font-medium px-2 py-1 rounded-full backdrop-blur-sm">
-                      {carrera.modalidad}
-                    </span>
-                  </div>
-                  <h3 class="text-white font-bold text-xl leading-tight mb-1 min-h-[3.5rem] flex items-center">
-                    {carrera.name.split(' ').length > 3 ? (
-                      <>
-                        <span class="block w-full">
-                          {carrera.name.split(' ').slice(0, 3).join(' ')}
-                          <br />
-                          {carrera.name.split(' ').slice(3).join(' ')}
-                        </span>
-                      </>
-                    ) : (
-                      carrera.name
-                    )}
-                  </h3>
-                  <p class="text-gray-300 text-sm font-medium line-clamp-2 min-h-[2.5rem] mb-4">
-                    {carrera.titulo}
-                  </p>
-              
-                  <div class="mt-4 ml-16">
+                  <div class="ml-9">
                     <a 
                       href={`/carreras/${carrera.slug}`}
                       class="bg-white/15 hover:bg-white/25 text-white font-bold text-center py-2 px-2 rounded-xl transition-all duration-300 active:scale-95 backdrop-blur-md border border-white/20 shadow-lg"
@@ -153,14 +113,12 @@ function initializeMobileCarousel() {
   if (!track || !carousel) return;
 
   const mobileItems = track.querySelectorAll('.mobile-slide');
-  const mobileItemsCount = mobileItems.length / 2;
-  const totalSlides = mobileItems.length;
+  const mobileItemsCount = mobileItems.length;
 
   function updateMobileCarousel() {
     if (isMobileAnimating) return;
     isMobileAnimating = true;
 
-    // Cada slide ocupa 100% del ancho del viewport
     const itemWidth = 100;
     
     const translateX = -(mobileCurrentIndex * itemWidth);
@@ -392,5 +350,16 @@ window.addEventListener("resize", () => {
   width: calc(100vw - 2rem) !important;
   margin: 0 auto !important;
   flex-shrink: 0;
+}
+
+.mobile-slide .relative.flex-1.overflow-hidden {
+  height: 60% !important;
+}
+
+.mobile-slide img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
 }
 </style>
