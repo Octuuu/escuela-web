@@ -78,7 +78,7 @@ const ProyectoYComentarios = () => {
 
   return (
     <div className="text-white">
-      {/* COMENTARIOS */}
+  
       <section className="max-w-3xl mx-auto mt-12 px-4">
         <h1 className="text-3xl font-semibold text-center mb-8">Foro de Comentarios</h1>
         {mensajeComentario && (
@@ -179,7 +179,6 @@ const ProyectoYComentarios = () => {
           </div>
         )}
 
-        {/* Modal de confirmación para eliminar proyecto */}
         {proyectoIdAEliminar && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full">

@@ -7,41 +7,23 @@ import Proximamente from "../components/Proximamente.astro";
 import MallaCarreras from "../components/MallaCarreras.astro";
 import { carreras } from "../data/carreras";
 import AOSInit from "../components/AOSInit";
+import Carrusel from "../components/Carrusel.astro"; 
 ---
 
 <Layout>
 
-  <div class="text-black items-center flex flex-col justify-center px-4 relative" data-aos="zoom-in">
+  <div class="text-black items-center flex flex-col justify-center px-4 relative overflow-visible" data-aos="zoom-in">
     
     <div>
-      <h1 class="text-2xl lg:text-5xl lg:text-start font-extrabold mb-4 text-[#FFB84D] text-center relative z-10 " >
-      OFERTAS EDUCATIVAS
+      <h1 class="text-2xl lg:text-5xl lg:text-start font-extrabold mb-4 text-[#FFB84D] text-center relative z-10">
+        OFERTAS EDUCATIVAS
       </h1>
-      <div class="w-15 h-1 lg:w-32 lg:h-2 mt-4 bg-[#FFB84D] rounded-full "></div>
+      <div class="w-15 h-1 lg:w-32 lg:h-2 mt-4 bg-[#FFB84D] rounded-full"></div>
     </div>
-      
-    <p class="text-base mt-2 lg:mt-5 text-gray-300 text-center mb-8 max-w-3xl mx-auto font-medium ">
-      Formamos a futuros educadores con vocación, compromiso y excelencia académica. Nuestras carreras están orientadas al desarrollo integral de profesionales capaces de transformar la educación desde el aula.
-    </p>
 
-    <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 items-center md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-7 lg:w-full ">
-      {carreras.map((carrera) => (
-        <MallaCarreras
-          name={carrera.name}
-          duracion={carrera.duracion}
-          image={carrera.image}
-          alt={carrera.alt}
-          perfil={`/carreras/${carrera.slug}`}
-        />
-      ))}
-    </div>
-    <script>
-      
-    </script>
+    <Carrusel />
 
   </div>
+
   <AOSInit client:load />
-
 </Layout>
-
-

@@ -6,7 +6,7 @@ export default function Foro() {
   const [formData, setFormData] = useState({ name: '', content: '' });
   const [replyingToId, setReplyingToId] = useState(null);
   const [mensaje, setMensaje] = useState(null);
-  const [mostrarRespuestas, setMostrarRespuestas] = useState({}); // { [id]: true/false }
+  const [mostrarRespuestas, setMostrarRespuestas] = useState({});
 
   useEffect(() => {
     fetchComentarios();
@@ -17,10 +17,10 @@ export default function Foro() {
       .from('comments')
       .select('*')
       .eq('pageid', 'inicio')
-      .order('id', { ascending: true }); // orden simple
+      .order('id', { ascending: true }); 
 
     if (!error) {
-      // organizar comentarios en principal + respuestas
+
       const principales = data.filter(c => c.parent_id === null);
       const respuestas = data.filter(c => c.parent_id !== null);
 

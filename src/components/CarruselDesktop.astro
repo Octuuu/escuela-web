@@ -1,0 +1,229 @@
+---
+import { carreras } from "../data/carreras.js";
+---
+
+<div class="relative w-full h-[350px] rounded-2xl">
+  <button
+    id="prevBtn"
+    class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/50 backdrop-blur-sm text-white p-3 rounded-full z-20 shadow-lg transition-all duration-300 hover:scale-110 text-lg border border-white/30"
+  >
+    ‹
+  </button>
+
+  <button
+    id="nextBtn"
+    class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 backdrop-blur-sm text-white p-3 rounded-full z-20 shadow-lg transition-all duration-300 hover:scale-110 text-lg border border-white/30"
+  >
+    ›
+  </button>
+
+  <div
+    id="carousel3d"
+    class="relative w-full h-full flex items-center justify-center perspective-[1400px] rounded-2xl"
+  >
+    {carreras.map((carrera, index) => (
+      <div
+        class="carousel-3d-item absolute w-[250px] h-[300px] bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden shadow-2xl transition-all duration-700 ease-in-out border border-gray-600/30 rounded-2xl"
+        data-index={index}
+      >
+        <div class="relative w-full h-full overflow-hidden rounded-2xl">
+          <img
+            src={carrera.image}
+            alt={carrera.alt}
+            class="w-full h-full object-cover transition-transform duration-500"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+          
+          <div class="absolute bottom-0 left-0 right-0 p-2">
+            <div class="flex items-center gap-1 mb-2">
+              <span class="bg-white/20 text-white text-[8px] font-bold px-1 py-1 rounded-full">
+                {carrera.duracion}
+              </span>
+              <span class="bg-white/20 text-white text-[8px] font-bold px-1 py-1 rounded-full ">
+                {carrera.modalidad}
+              </span>
+            </div>
+            <h3 class="text-white font-bold text-[15px] leading-tight mb-1 min-h-[2.5rem] flex items-center">
+              {carrera.name.split(' ').length > 3 ? (
+                <>
+                  <span class="block w-full">
+                    {carrera.name.split(' ').slice(0, 3).join(' ')}
+                    <br />
+                    {carrera.name.split(' ').slice(3).join(' ')}
+                  </span>
+                </>
+              ) : (
+                carrera.name
+              )}
+            </h3>
+            <p class="text-gray-300 text-[10px] mb-[-9px] font-medium line-clamp-2 min-h-[2rem]">
+              {carrera.titulo}
+            </p>
+            
+            <div class="ml-15 mb-2">
+              <a
+                href={`/carreras/${carrera.slug}`}
+                class="bg-white/15 hover:bg-white/25 text-white font-bold text-center py-1 px-1 rounded-lg transition-all duration-300 active:scale-95 backdrop-blur-md border border-white/20 shadow-lg text-[10px] "
+              >
+                Explorar Carrera
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+let currentIndex = 0;
+let autoRotateInterval;
+let isAnimating = false;
+
+function initializeCarousel() {
+  const carousel = document.getElementById("carousel3d");
+  if (!carousel) return;
+
+  const items = Array.from(carousel.querySelectorAll(".carousel-3d-item"));
+  if (items.length === 0) return;
+
+  function positionItems() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const total = items.length;
+
+    items.forEach((item, i) => {
+      const indexDiff = ((i - currentIndex + total) % total);
+      let x = 0, z = 0, scale = 1, opacity = 1, rotateY = 0, blur = "none";
+
+      if (indexDiff === 0) {
+        x = 0;
+        z = 200;
+        scale = 1.2;
+        opacity = 1;
+        rotateY = 0;
+        blur = "none";
+      } else if (indexDiff === 1 || indexDiff === total - 1) {
+        const direction = indexDiff === 1 ? 1 : -1;
+        x = direction * 280;
+        z = 0;
+        scale = 0.9;
+        opacity = 0.8;
+        rotateY = direction * 25;
+        blur = "blur(1px)";
+      } else {
+        x = 0;
+        z = -400;
+        scale = 0.6;
+        opacity = 0;
+        rotateY = 0;
+        blur = "blur(5px)";
+      }
+
+      item.style.transform = `
+        translateX(${x}px)
+        translateZ(${z}px)
+        rotateY(${rotateY}deg)
+        scale(${scale})
+      `;
+      item.style.opacity = opacity;
+      item.style.filter = blur;
+      item.style.zIndex = Math.round(z + 1000);
+    });
+
+    setTimeout(() => (isAnimating = false), 600);
+  }
+
+  function rotateCarousel(direction) {
+    if (isAnimating) return;
+    currentIndex = (currentIndex + direction + items.length) % items.length;
+    positionItems();
+  }
+
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  if (prevBtn) prevBtn.addEventListener("click", () => rotateCarousel(-1));
+  if (nextBtn) nextBtn.addEventListener("click", () => rotateCarousel(1));
+
+  function startAutoRotate() {
+    stopAutoRotate();
+    autoRotateInterval = setInterval(() => rotateCarousel(1), 4000);
+  }
+
+  function stopAutoRotate() {
+    if (autoRotateInterval) {
+      clearInterval(autoRotateInterval);
+      autoRotateInterval = null;
+    }
+  }
+
+  carousel.addEventListener("mouseenter", stopAutoRotate);
+  carousel.addEventListener("mouseleave", startAutoRotate);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") rotateCarousel(-1);
+    if (e.key === "ArrowRight") rotateCarousel(1);
+  });
+
+  positionItems();
+  startAutoRotate();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeCarousel);
+} else {
+  initializeCarousel();
+}
+
+document.addEventListener("astro:page-load", initializeCarousel);
+document.addEventListener("astro:after-swap", initializeCarousel);
+
+window.addEventListener("resize", () => {
+  setTimeout(initializeCarousel, 200);
+});
+</script>
+
+<style>
+.carousel-3d-item {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.carousel-3d-item img {
+  transform: translateZ(0);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.min-h-\[2\.5rem\] {
+  min-height: 2.5rem !important;
+}
+
+.min-h-\[2rem\] {
+  min-height: 2rem !important;
+}
+
+@media (max-width: 1280px) {
+  #carousel3d { perspective: 1100px; }
+  .carousel-3d-item { width: 240px; height: 290px; }
+}
+@media (max-width: 1024px) {
+  #carousel3d { perspective: 900px; }
+  .carousel-3d-item { width: 220px; height: 270px; }
+}
+@media (max-width: 768px) {
+  #carousel3d { perspective: 800px; }
+  .carousel-3d-item { width: 200px; height: 250px; }
+  button { transform: translateY(-50%) scale(0.8) !important; padding: 8px !important; }
+}
+@media (max-width: 640px) {
+  .carousel-3d-item { width: 180px; height: 230px; }
+  .carousel-3d-item h3 { font-size: 0.9rem; }
+}
+</style>

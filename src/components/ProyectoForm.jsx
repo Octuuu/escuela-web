@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
-// Función para limpiar nombres de archivos
+
 function sanitizeFileName(name) {
   return name
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // Eliminar acentos
-    .replace(/\s+/g, "_")           // Espacios → _
-    .replace(/[^a-zA-Z0-9._-]/g, "") // Solo caracteres válidos
+    .replace(/[\u0300-\u036f]/g, "") 
+    .replace(/\s+/g, "_")        
+    .replace(/[^a-zA-Z0-9._-]/g, "")
     .toLowerCase();
 }
 
@@ -31,7 +31,7 @@ export default function ProyectoForm() {
     }
 
     try {
-      // Subir imagen
+     
       const sanitizedImageName = sanitizeFileName(imageFile.name);
       const imagePath = `images/${Date.now()}_${sanitizedImageName}`;
       const { error: imageError } = await supabase.storage
@@ -39,7 +39,6 @@ export default function ProyectoForm() {
         .upload(imagePath, imageFile, { upsert: false });
       if (imageError) throw imageError;
 
-      // Subir PDF
       const sanitizedPdfName = sanitizeFileName(pdfFile.name);
       const pdfPath = `pdfs/${Date.now()}_${sanitizedPdfName}`;
       const { error: pdfError } = await supabase.storage
@@ -47,13 +46,13 @@ export default function ProyectoForm() {
         .upload(pdfPath, pdfFile, { upsert: false });
       if (pdfError) throw pdfError;
 
-      // Obtener URLs públicas
+    
       const imageUrl = supabase.storage.from("proyectos").getPublicUrl(imagePath).data.publicUrl;
       const pdfUrl = supabase.storage.from("proyectos").getPublicUrl(pdfPath).data.publicUrl;
 
       if (!imageUrl || !pdfUrl) throw new Error("No se pudo obtener la URL pública de los archivos.");
 
-      // Insertar en tabla proyectos
+    
       const { error: dbError } = await supabase
         .from("proyectos")
         .insert([{ title, description, image_url: imageUrl, pdf_url: pdfUrl }]);
@@ -62,7 +61,7 @@ export default function ProyectoForm() {
       setMensaje("Proyecto subido correctamente");
       setMensajeClass("text-green-600 dark:text-green-400");
 
-      // Limpiar formulario
+     
       setTitle("");
       setDescription("");
       setImageFile(null);

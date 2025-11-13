@@ -1,0 +1,398 @@
+---
+import { carreras } from "../data/carreras.js";
+---
+
+<div class="w-full">
+  <div class="relative">
+    <div id="mobileCarousel" class="overflow-hidden rounded-3xl">
+      <div id="mobileCarouselTrack" class="flex transition-transform duration-500 ease-out">
+      
+        {carreras.map((carrera, index) => (
+          <div class="flex-shrink-0 w-full px-4 mobile-slide" data-index={index}>
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-600/30 h-[437px] flex flex-col mx-auto w-[calc(100vw-2rem)]">
+              <div class="relative flex-1 overflow-hidden">
+                <img 
+                  src={carrera.image} 
+                  alt={carrera.alt}
+                  class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      {carrera.duracion}
+                    </span>
+                    <span class="bg-white/20 text-white text-xs font-medium px-2 py-1 rounded-full backdrop-blur-sm">
+                      {carrera.modalidad}
+                    </span>
+                  </div>
+                  <h3 class="text-white font-bold text-xl leading-tight mb-1 min-h-[3.5rem] flex items-center">
+                    {carrera.name.split(' ').length > 3 ? (
+                      <>
+                        <span class="block w-full">
+                          {carrera.name.split(' ').slice(0, 3).join(' ')}
+                          <br />
+                          {carrera.name.split(' ').slice(3).join(' ')}
+                        </span>
+                      </>
+                    ) : (
+                      carrera.name
+                    )}
+                  </h3>
+                  <p class="text-gray-300 text-sm font-medium line-clamp-2 min-h-[2.5rem] mb-4">
+                    {carrera.titulo}
+                  </p>
+                  
+              
+                  <div class="mt-4 ml-16">
+                    <a 
+                      href={`/carreras/${carrera.slug}`}
+                      class="bg-white/15 hover:bg-white/25 text-white font-bold text-center py-2 px-2 rounded-xl transition-all duration-300 active:scale-95 backdrop-blur-md border border-white/20 shadow-lg"
+                    >
+                      Explorar Carrera
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      
+        {carreras.map((carrera, index) => (
+          <div class="flex-shrink-0 w-full px-4 mobile-slide" data-index={index}>
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-600/30 h-[437px] flex flex-col mx-auto w-[calc(100vw-2rem)]">
+              <div class="relative flex-1 overflow-hidden">
+                <img 
+                  src={carrera.image} 
+                  alt={carrera.alt}
+                  class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      {carrera.duracion}
+                    </span>
+                    <span class="bg-white/20 text-white text-xs font-medium px-2 py-1 rounded-full backdrop-blur-sm">
+                      {carrera.modalidad}
+                    </span>
+                  </div>
+                  <h3 class="text-white font-bold text-xl leading-tight mb-1 min-h-[3.5rem] flex items-center">
+                    {carrera.name.split(' ').length > 3 ? (
+                      <>
+                        <span class="block w-full">
+                          {carrera.name.split(' ').slice(0, 3).join(' ')}
+                          <br />
+                          {carrera.name.split(' ').slice(3).join(' ')}
+                        </span>
+                      </>
+                    ) : (
+                      carrera.name
+                    )}
+                  </h3>
+                  <p class="text-gray-300 text-sm font-medium line-clamp-2 min-h-[2.5rem] mb-4">
+                    {carrera.titulo}
+                  </p>
+              
+                  <div class="mt-4 ml-16">
+                    <a 
+                      href={`/carreras/${carrera.slug}`}
+                      class="bg-white/15 hover:bg-white/25 text-white font-bold text-center py-2 px-2 rounded-xl transition-all duration-300 active:scale-95 backdrop-blur-md border border-white/20 shadow-lg"
+                    >
+                      Explorar Carrera
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <div class="flex justify-center mt-8 space-x-3">
+      {carreras.map((_, index) => (
+        <button 
+          class="mobile-dot w-2 h-2 rounded-full bg-gray-400 transition-all duration-300"
+          data-index={index}
+        ></button>
+      ))}
+    </div>
+    
+    <button 
+      id="mobilePrev"
+      class="absolute -left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm text-white rounded-full flex items-center justify-center transition-all duration-300 active:scale-95 border border-white/30 z-10 hover:bg-black/70 shadow-xl"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+    <button 
+      id="mobileNext"
+      class="absolute -right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 backdrop-blur-sm text-white rounded-full flex items-center justify-center transition-all duration-300 active:scale-95 border border-white/30 z-10 hover:bg-black/70 shadow-xl"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+let mobileCurrentIndex = 0;
+let mobileAutoRotateInterval;
+let isMobileAnimating = false;
+
+function initializeMobileCarousel() {
+  const track = document.getElementById("mobileCarouselTrack");
+  const dots = document.querySelectorAll(".mobile-dot");
+  const prevBtn = document.getElementById("mobilePrev");
+  const nextBtn = document.getElementById("mobileNext");
+  const carousel = document.getElementById("mobileCarousel");
+
+  if (!track || !carousel) return;
+
+  const mobileItems = track.querySelectorAll('.mobile-slide');
+  const mobileItemsCount = mobileItems.length / 2;
+  const totalSlides = mobileItems.length;
+
+  function updateMobileCarousel() {
+    if (isMobileAnimating) return;
+    isMobileAnimating = true;
+
+    // Cada slide ocupa 100% del ancho del viewport
+    const itemWidth = 100;
+    
+    const translateX = -(mobileCurrentIndex * itemWidth);
+    track.style.transform = `translateX(${translateX}vw)`;
+    
+    const realIndex = mobileCurrentIndex % mobileItemsCount;
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("bg-[#ed9821]", index === realIndex);
+      dot.classList.toggle("w-2", index !== realIndex);
+      dot.classList.toggle("w-6", index === realIndex);
+      dot.classList.toggle("bg-gray-400", index !== realIndex);
+    });
+
+    setTimeout(() => {
+      isMobileAnimating = false;
+      
+      if (mobileCurrentIndex >= mobileItemsCount) {
+        track.style.transition = 'none';
+        mobileCurrentIndex = 0;
+        const resetTranslateX = -(mobileCurrentIndex * itemWidth);
+        track.style.transform = `translateX(${resetTranslateX}vw)`;
+        setTimeout(() => {
+          track.style.transition = 'transform 0.5s ease-out';
+        }, 50);
+      }
+      else if (mobileCurrentIndex < 0) {
+        track.style.transition = 'none';
+        mobileCurrentIndex = mobileItemsCount - 1;
+        const resetTranslateX = -(mobileCurrentIndex * itemWidth);
+        track.style.transform = `translateX(${resetTranslateX}vw)`;
+        setTimeout(() => {
+          track.style.transition = 'transform 0.5s ease-out';
+        }, 50);
+      }
+    }, 500);
+  }
+
+  function goToSlide(index) {
+    mobileCurrentIndex = index;
+    updateMobileCarousel();
+  }
+
+  function nextSlide() {
+    if (isMobileAnimating) return;
+    goToSlide(mobileCurrentIndex + 1);
+  }
+
+  function prevSlide() {
+    if (isMobileAnimating) return;
+    goToSlide(mobileCurrentIndex - 1);
+  }
+
+  function startMobileAutoRotate() {
+    stopMobileAutoRotate();
+    mobileAutoRotateInterval = setInterval(() => {
+      if (!isMobileAnimating) {
+        nextSlide();
+      }
+    }, 3000);
+  }
+
+  function stopMobileAutoRotate() {
+    if (mobileAutoRotateInterval) {
+      clearInterval(mobileAutoRotateInterval);
+      mobileAutoRotateInterval = null;
+    }
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      stopMobileAutoRotate();
+      prevSlide();
+      setTimeout(startMobileAutoRotate, 5000);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      stopMobileAutoRotate();
+      nextSlide();
+      setTimeout(startMobileAutoRotate, 5000);
+    });
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      stopMobileAutoRotate();
+      goToSlide(index);
+      setTimeout(startMobileAutoRotate, 5000);
+    });
+  });
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let isSwiping = false;
+  let startTranslateX = 0;
+
+  track.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopMobileAutoRotate();
+    isSwiping = true;
+    
+    const itemWidth = 100;
+    startTranslateX = -(mobileCurrentIndex * itemWidth);
+  });
+
+  track.addEventListener("touchmove", (e) => {
+    if (!isSwiping) return;
+    const currentX = e.changedTouches[0].screenX;
+    const diff = touchStartX - currentX;
+    const swipeTranslate = -diff / 8;
+    track.style.transform = `translateX(${startTranslateX + swipeTranslate}vw)`;
+    track.style.transition = 'none';
+  });
+
+  track.addEventListener("touchend", (e) => {
+    if (!isSwiping) return;
+    touchEndX = e.changedTouches[0].screenX;
+    track.style.transition = 'transform 0.5s ease-out';
+    handleSwipe();
+    isSwiping = false;
+    setTimeout(startMobileAutoRotate, 5000);
+  });
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    } else {
+      updateMobileCarousel();
+    }
+  }
+
+  track.addEventListener("mouseenter", stopMobileAutoRotate);
+  track.addEventListener("mouseleave", startMobileAutoRotate);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      stopMobileAutoRotate();
+      prevSlide();
+      setTimeout(startMobileAutoRotate, 5000);
+    }
+    if (e.key === "ArrowRight") {
+      stopMobileAutoRotate();
+      nextSlide();
+      setTimeout(startMobileAutoRotate, 5000);
+    }
+  });
+
+  mobileCurrentIndex = 0;
+  updateMobileCarousel();
+  startMobileAutoRotate();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeMobileCarousel);
+} else {
+  initializeMobileCarousel();
+}
+
+document.addEventListener("astro:page-load", initializeMobileCarousel);
+document.addEventListener("astro:after-swap", initializeMobileCarousel);
+
+window.addEventListener("resize", () => {
+  setTimeout(initializeMobileCarousel, 200);
+});
+</script>
+
+<style>
+#mobileCarouselTrack {
+  display: flex;
+  gap: 0;
+}
+
+.mobile-dot {
+  transition: all 0.3s ease;
+}
+
+#mobileCarouselTrack {
+  width: max-content;
+}
+
+#mobileCarousel {
+  scroll-snap-type: x mandatory;
+}
+
+.mobile-slide {
+  scroll-snap-align: center;
+  width: 100vw;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#mobileCarouselTrack {
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.mobile-slide {
+  backface-visibility: hidden;
+}
+
+.min-h-\[3\.5rem\] {
+  min-height: 3.5rem !important;
+}
+
+.min-h-\[2\.5rem\] {
+  min-height: 2.5rem !important;
+}
+
+.h-\[437px\] {
+  height: 437px !important;
+}
+
+.mobile-slide > div {
+  width: calc(100vw - 2rem) !important;
+  margin: 0 auto !important;
+  flex-shrink: 0;
+}
+</style>

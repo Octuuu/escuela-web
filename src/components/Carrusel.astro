@@ -1,0 +1,13 @@
+---
+import CarruselDesktop from './CarruselDesktop.astro';
+import CarruselMobile from './CarruselMobile.astro';
+---
+
+<section class="relative w-full max-w-5xl mx-auto overflow-visible py-20 mt-0">
+  <div class="hidden sm:block">
+    <CarruselDesktop />
+  </div>
+  <div class="sm:hidden">
+    <CarruselMobile />
+  </div>
+</section>
